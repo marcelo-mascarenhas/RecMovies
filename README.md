@@ -10,4 +10,12 @@ Equipe:
   
   Marcelo Mascarenhas Ribeiro de Araújo - 2019110053
   
-****  Objetivo do Sistema:****
+**Objetivo do Sistema:** Plataforma de recomendação que implementa uma interface de avaliação, recomendação e visualização, no domínio de filmes.
+
+**Funções do Sistema: ** 
+<ol>
+  <li>Buscar filmes, fornecendo um conjunto de filtros para o usuário, e.g filtrar por gênero, por nota, etc..</li>
+  <li>Listar filmes recomendados com base nos indicados pelo usuário.</li>
+  <li>Sistema de cadastro para salvar informações e filmes.</li>
+  <li>Mostrar informações de filmes selecionados.</li>
+</ol>
