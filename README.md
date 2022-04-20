@@ -1,6 +1,6 @@
 # TP-Eng-Soft1
 
-Equipe:
+## Equipe
 
   Asafe Clemente Gadelha de Medeiros - 2019006434
   
@@ -12,9 +12,8 @@ Equipe:
   
 **Objetivo do Sistema:** Plataforma de recomendação que implementa uma interface de avaliação, recomendação e visualização, no domínio de filmes.
 
-###
+## Principais Features
 
-**Principais Features:** 
 <ol>
   <li>Buscar filmes, fornecendo um conjunto de filtros para o usuário, e.g filtrar por gênero, por nota, etc..</li>
   <li>Listar filmes recomendados com base nos indicados pelo usuário.</li>
@@ -22,7 +21,8 @@ Equipe:
   <li>Mostrar informações de filmes selecionados.</li>
 </ol>
 
-**Possíveis Tecnologias:** 
+## Possíveis Tecnologias
+
 <ol>
   <li>Database: SQL</li>
   <li>Back-end: Django</li>
