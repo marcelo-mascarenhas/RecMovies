@@ -28,3 +28,28 @@
   <li>Back-end: Django</li>
   <li>Front-end: React</li>
 </ol>
+
+## Backlog do Produto e do Sprint
+
+SPRINT 0
+
+- Tarefas Técnicas
+    - Preparar ambiente de desenvolvimento ( VSCode, Dependências ) \[ Asafe, Helio, Marcelo, Matheus ]
+    - Discutir e modelar o banco de dados \[ Asafe, Helio, Marcelo, Matheus ]
+
+SPRINT 1
+
+- História: Como usuário do sistema, eu quero buscar filmes.
+- Tarefas:
+
+
+- História: Como usuário do sistema, eu quero receber recomendações de filmes similares ao filme buscado.
+- Tarefas: 
+
+
+- História: Como usuário do sistema, eu quero acessar as informações de um filme.
+- Tarefas:
+
+
+- História: 
+
