@@ -12,6 +12,8 @@ Equipe:
   
 **Objetivo do Sistema:** Plataforma de recomendação que implementa uma interface de avaliação, recomendação e visualização, no domínio de filmes.
 
+###
+
 **Principais Features:** 
 <ol>
   <li>Buscar filmes, fornecendo um conjunto de filtros para o usuário, e.g filtrar por gênero, por nota, etc..</li>
