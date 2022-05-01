@@ -5,7 +5,7 @@
 git clone https://github.com/marcelo-mascarenhas/TP-Eng-Soft1.git
 cd TP-Eng-Soft1/
 ~~~
-Para rodar aplicação abra os diretórios do front (frontend) e do back (backend) em terminais separados.
+Para rodar aplicação abra os diretórios do front (client) e do back (backend) em terminais separados.
 
 ### No terminal do frontend:
 
