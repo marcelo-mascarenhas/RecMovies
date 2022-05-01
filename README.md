@@ -1,5 +1,23 @@
 # TP-Eng-Soft1
 
+
+
+Em seguida, navegue até o diretório:
+cd django-todo-react
+
+Agora instale o Pipenv usando pip:
+pip install pipenv
+
+Nota: Dependendo da sua instalação, pode ser necessário usar pip3em vez de pip.
+E ative um novo ambiente virtual:
+pipenv shell
+
+Instale o Django usando o Pipenv:
+pipenv install django
+
+pipenv install djangorestframework django-cors-headers
+
+
 ## Equipe
 
   Asafe Clemente Gadelha de Medeiros - 2019006434
