@@ -7,7 +7,7 @@ cd TP-Eng-Soft1/
 ~~~
 Para rodar aplicação abra os diretórios do front (client) e do back (backend) em terminais separados.
 
-### No terminal do frontend:
+### No terminal do frontend (client):
 
 1) Execute o comando `npm i`  para instalar todas as dependências necessárias.
 
