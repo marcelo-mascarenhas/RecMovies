@@ -36,6 +36,11 @@ Para rodar aplicação abra os diretórios do front (frontend) e do back (backen
     ~~~
     pipenv install djangorestframework django-cors-headers
     ~~~
+    
+5) Vamos iniciar o servidor:
+    ~~~
+    python manage.py runserver
+    ~~~
 
 ## Equipe
 
