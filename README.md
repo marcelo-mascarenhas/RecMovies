@@ -4,14 +4,16 @@
 
 Para rodar aplicação abra os diretórios do front (frontend) e do back (backend) em terminais separados.
 
-### Dentro do diretório frontend:
-1) Execute o comando `npm i` no terminal do front para instalar todas as dependências necessárias.
+### No terminal do frontend:
+
+1) Execute o comando `npm i`  para instalar todas as dependências necessárias.
 
 2) Em seguida, inicie o aplicativo:
     ~~~
     npm start
     ~~~
-### Dentro do diretório backend:
+    
+### No terminal do backend:
 
 1) Instale o Pipenv usando pip (pode ser necessário usar pip3 em vez de pip):   
   
