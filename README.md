@@ -1,22 +1,46 @@
 # TP-Eng-Soft1
 
+## Rodar projeto
+
+Para rodar aplicação abra os diretórios do front (frontend) e do back (backend) em terminais separados.
+
+### No terminal do frontend:
+
+1) Execute o comando `npm i`  para instalar todas as dependências necessárias.
+
+2) Em seguida, inicie o aplicativo:
+    ~~~
+    npm start
+    ~~~
+    
+### No terminal do backend:
+
+1) Instale o Pipenv usando pip (pode ser necessário usar pip3 em vez de pip):   
+  
+    ~~~
+    pip install pipenv 
+    ~~~
 
 
-Em seguida, navegue até o diretório:
-cd django-todo-react
-
-Agora instale o Pipenv usando pip:
-pip install pipenv
-
-Nota: Dependendo da sua instalação, pode ser necessário usar pip3em vez de pip.
-E ative um novo ambiente virtual:
-pipenv shell
-
-Instale o Django usando o Pipenv:
-pipenv install django
-
-pipenv install djangorestframework django-cors-headers
-
+2) Ative um novo ambiente virtual:
+    ~~~
+    pipenv shell
+    ~~~
+    
+3) Instale o Django usando o Pipenv:
+    ~~~
+    pipenv install django
+    ~~~
+    
+4) Instale o djangorestframeworke django-cors-headers usando o Pipenv:
+    ~~~
+    pipenv install djangorestframework django-cors-headers
+    ~~~
+    
+5) Vamos iniciar o servidor:
+    ~~~
+    python manage.py runserver
+    ~~~
 
 ## Equipe
 
