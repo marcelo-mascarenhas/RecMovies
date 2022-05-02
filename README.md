@@ -69,7 +69,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 ## Possíveis Tecnologias
 
 <ol>
-  <li>Database: SQL</li>
+  <li>Database: MongoDB</li>
   <li>Back-end: Django</li>
   <li>Front-end: React</li>
 </ol>
