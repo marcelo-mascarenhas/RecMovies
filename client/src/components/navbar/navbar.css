@@ -1,0 +1,165 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.03em;
+  color: #fff;
+  border-radius: 0px 0px 5px 5px;
+  background-color: var(--dark-blue);
+
+ 
+  position: fixed;
+  z-index: 5;
+}
+
+.navbar>div {
+  display: flex;
+  align-items: center;
+}
+
+.navbar img {
+  width: 100px;
+  cursor: pointer;
+}
+.navbar div .option {
+  display: flex;
+  align-items: center;
+  
+  margin-right: 100px;
+}
+.navbar span{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .option {
+  cursor: pointer;
+}
+
+.navbar .search_icon {
+  cursor: pointer;
+  height: 44px;
+}
+
+
+
+.navbar .option:hover {
+  text-decoration: underline;
+}
+
+
+.navbar div .option:last-child {
+  margin-right: 0;
+}
+
+.navbar .sandwich-icon {
+  width: 34px;
+  height: 36px;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.navbar .sandwich-icon>div {
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background-color: #F2F4F5;
+}
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+
+  height: 100vh;
+  width: 0;
+
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  background-color: var(--medium-blue-2);
+  padding: 20px;
+
+  transition: width 0.5s;
+  gap: 10px;
+}
+
+.sidenav.open {
+  display: flex;
+  width: 250px;
+}
+
+.sidenav.close {
+  padding: 0;
+}
+
+.sidenav.close .option,
+.sidenav.close .close {
+  display: none;
+}
+
+.sidenav .close {
+  color: #F2F4F5;
+  font-size: 35px;
+  line-height: 21px;
+
+  margin-left: auto;
+}
+
+.sidenav .option {
+  color: var(--gray);
+  cursor: pointer;
+}
+
+.navbar .px400-input {
+	width: 300px;
+}
+
+@media (max-width: 1100px) {
+  .navbar div .option {
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 850px) {
+  .navbar div .option {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .navbar .option {
+    display: none;
+  }
+
+  .navbar .sandwich-icon {
+    display: flex;
+  }
+}
+
+@media print {
+  .navbar {
+    display: none;
+  }
+}
