@@ -13,7 +13,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 
 2) Em seguida, inicie o aplicativo:
     ~~~
-    npm start
+    npm run dev
     ~~~
     
 ### No terminal do backend:
