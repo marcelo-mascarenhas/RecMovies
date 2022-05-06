@@ -1,0 +1,25 @@
+#page-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#page-container .page-body {
+  width: 100%;
+  height: 100%;
+
+  padding: calc(70px + 1vw) 5vw 40px 5vw;
+
+  max-width: 1500px;
+}
+
+#page-container .page-body>div {
+  width: 100%;
+  height: 100%;
+}
+
+@media print {
+  #page-container .page-body {
+    padding-top: 0;
+  }
+}
