@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Todo
+from .models import Movies
 
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Todo
-        fields = ('id', 'title', 'description', 'completed')
+        model = Movies
+        fields = ('title', 'language', 'genres', 'overview', 'popularity' ,'poster_path','release_date','vote_average','vote_count')

@@ -30,19 +30,9 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
     pipenv shell
     ~~~
     
-3) Instale o Django usando o Pipenv:
+3) Execute o comando:
     ~~~
-    pipenv install django
-    ~~~
-    
-4) Instale o djangorestframeworke django-cors-headers usando o Pipenv:
-    ~~~
-    pipenv install djangorestframework django-cors-headers
-    ~~~
-    
-5) Vamos iniciar o servidor:
-    ~~~
-    python manage.py runserver
+    ./run.sh
     ~~~
 
 ## Equipe
@@ -69,7 +59,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 ## Possíveis Tecnologias
 
 <ol>
-  <li>Database: MongoDB</li>
+  <li>Database: SQL</li>
   <li>Back-end: Django</li>
   <li>Front-end: React</li>
 </ol>
