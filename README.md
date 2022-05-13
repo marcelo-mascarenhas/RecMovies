@@ -24,12 +24,11 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
     pip install pipenv 
     ~~~
 
-
 2) Ative um novo ambiente virtual:
     ~~~
     pipenv shell
     ~~~
-    
+
 3) Execute o comando:
     ~~~
     ./run.sh

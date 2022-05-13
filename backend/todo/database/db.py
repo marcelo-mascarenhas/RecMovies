@@ -1,5 +1,4 @@
-from turtle import title
-from .models import Movies
+from ..models import Movies
 
 
 b = Movies( title = "I Love You to Death", 

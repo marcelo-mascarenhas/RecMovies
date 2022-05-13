@@ -1,37 +1,23 @@
 from django.db import models
 
-# Create your models here.
-
-#gêneros, linguagem, título, overview, popularidade, vote average e vote count release date
-
+# Atributos do Banco de Dados
 '''
-[
-    {
-        "title": "I Love You to Death",
-         "original_language": "en",
-        "genres": [
-            {
-                "id": 28,
-                "name": "Action"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 80,
-                "name": "Crime"
-            }
-        ],
-        "id": 3101,
-        "overview": "Joey Boca is the owner of a pizza parlour, and has been married to Rosalie for years. When Rosalie discovers that Joey is a womanizer and has been cheating on her for a long time, she goes to extreme lengths to punish him.",
-        "popularity": 6.977,
-        "poster_path": "/8LdWJLUfEa5JeUJ7SljJQMIJikZ.jpg",
-        "release_date": "1990-04-06",     
-        "vote_average": 6.4,
-        "vote_count": 192
-    }
-]
+    title : STRING (titulo do filme)
+    language : CHAR (qual é a lingua nativa do filme)
+    genres: STRING (todos os generos do filme separados por virgula
+                    EX: Action,Comedy,Drama
+                    )
+    overview: STRING (sinopse do filme)
+    popularity: FLOAT (popularidade do filme)
+    poster_path: STRING (extensão final da URL que possui o poster do filme
+                        a url fixa é: https://image.tmdb.org/t/p/original
+                        apos isso você adiciona o caminho do poster_path
+                        )
+    release_date: DATE (ano de lançamento do filme YYYY-MM-DD)
+    vote_average: FLOAT
+    vote_count: INT
+
+    Todos os atributos aceitam valores nulos ou valores em branco.
 '''
 
 class Movies(models.Model):
