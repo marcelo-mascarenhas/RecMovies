@@ -13,7 +13,6 @@ def convert(dic):
 def main():
   content = {}
   for i in range(100000,150000):
-    print(i)
     try:
       response = tmdb.Movies(i).info()
       string_convert = convert(response['genres'])
