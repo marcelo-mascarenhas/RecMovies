@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect, useState } from "react";
 import useForm from "../hooks/useForm";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -18,20 +17,10 @@ import { useNavigate } from "react-router-dom";
 
 import { Divider, IconButton, InputBase, Paper, TextField } from '@mui/material';
 
-import { popularMovies } from "../services/movies/popularMovies";
-
 import { getMovieInfo } from "../services/movies/getMovie";
 
 
-async function getPopularMovies(farm_id) {
-  try {
-    const animals_response = await popularMovies(farm_id);
-    console.log(animals_response, "teste")
 
-  } catch (err) {
-    console.log("Error fetching movies");
-  }
-}
 
 function Copyright() {
   return (
@@ -61,9 +50,7 @@ export default function Home() {
     handleSetErrors,
   } = useForm();
 
-  useEffect(() => {
-    const x = getPopularMovies();
-  }, []);
+
 
   async function checkValues(){
     const error = {};

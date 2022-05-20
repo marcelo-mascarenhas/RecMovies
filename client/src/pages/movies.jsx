@@ -24,10 +24,20 @@ const data = [
   },
 ];
 
-function Media(props) {
-  const { loading } = props;
+export default function Movies() {
+  
+  const location = useLocation();
+  const loading = false;
+
+  if (location.state){
+    var movies = location.state.moviesInfos
+  }
+
+  console.log(movies, "ue")
+
   return (
-    <Container sx={{ py: 8 }} maxWidth="md">
+    <Box sx={{ overflow: 'hidden' }}>
+      <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={2}>
         {(loading ? Array.from(new Array(NUM_FILMES)) : data).map((filme, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
@@ -72,22 +82,6 @@ function Media(props) {
         ))}
         </Grid>
     </Container>
-  );
-}
-
-export default function Movies() {
-  
-  const location = useLocation();
-
-  if (location.state){
-    var moviesInfos = location.state
-    console.log(moviesInfos)
-  }
-
-  return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <Media loading={true} />
-      <Media />
     </Box>
   );
 }

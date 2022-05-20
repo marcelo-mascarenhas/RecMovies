@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import { popularMovies } from "../services/movies/popularMovies";
 import { Card, CardContent, CardMedia } from '@mui/material';
 
 const NUM_FILMES = 2
@@ -75,10 +77,27 @@ function Media(props) {
 }
 
 export default function Populares() {
+
+
+  async function getPopularMovies(farm_id) {
+    try {
+      const animals_response = await popularMovies(farm_id);
+      console.log(animals_response, "teste")
+  
+    } catch (err) {
+      console.log("Error fetching movies");
+    }
+  }
+
+  useEffect(() => {
+    const x = getPopularMovies();
+  }, []);
+
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <Media loading={true} />
-      <Media />
-    </Box>
+    <div></div>
+    // <Box sx={{ overflow: 'hidden' }}>
+    //   <Media loading={true} />
+    //   <Media />
+    // </Box>
   );
 }
