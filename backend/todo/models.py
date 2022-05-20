@@ -32,5 +32,5 @@ class Movies(models.Model):
     vote_count = models.IntegerField(blank=True, null=True)
 
     def _str_(self):
-        return self.title
+        return self.genres
 
