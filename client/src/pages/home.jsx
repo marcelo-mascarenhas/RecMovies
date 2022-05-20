@@ -20,6 +20,9 @@ import { Divider, IconButton, InputBase, Paper, TextField } from '@mui/material'
 
 import { popularMovies } from "../services/movies/popularMovies";
 
+import { getMovieInfo } from "../services/movies/getMovie";
+
+
 async function getPopularMovies(farm_id) {
   try {
     const animals_response = await popularMovies(farm_id);
@@ -68,8 +71,7 @@ export default function Home() {
   }
 
   async function valuesAreCorrect(){
-    console.log("deu bom", values.searchMovie)
-    navigateTo('/movie')
+    console.log("mandando pro back:", values.searchMovie)
 
     try{
       getMovieInfo(values.searchMovie)
@@ -116,7 +118,7 @@ export default function Home() {
                 id = "searchMovie"
                 placeholder="Search"
                 inputProps={{ 'aria-label': 'search google maps' }}
-                value= {values.searchMovie}
+                value= {values.searchMovie || ''}
                 onChange={handleChange}
                 // onChange={}
               />
