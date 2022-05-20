@@ -74,7 +74,8 @@ export default function Home() {
     console.log("mandando pro back:", values.searchMovie)
 
     try{
-      getMovieInfo(values.searchMovie)
+      var movieInfos
+      movieInfos= await getMovieInfo(values.searchMovie)
     }
     catch(err){
       console.log("fail api")
