@@ -1,7 +1,7 @@
 import * as React from "react";
 import Home from "./pages/home";
 import Sobre from "./pages/sobre";
-import Recentes from "./pages/recentes";
+import Popular from "./pages/popular";
 import YouTube from "./pages/youtube";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
@@ -14,7 +14,9 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="sobre" element={<Sobre />} />
-            <Route path="recentes" element={<YouTube />} />
+            <Route path="populares" element={<Popular/>} />
+
+            <Route path="youtube" element={<YouTube />} />
 
             <Route path="*" element={<NoMatch />} />
           </Route>

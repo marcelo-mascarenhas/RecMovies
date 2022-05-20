@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import SLink from './slink';
 
 
-const pages = ['populares', 'recentes', 'sobre'];
+const pages = ['populares', 'sobre'];
 
 const settings = ['Favoritos'];
 
@@ -84,8 +84,7 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                  
+                  <SLink to={"/"+ page}><Typography textAlign="center">{page}</Typography></SLink>
                 </MenuItem>
               ))}
             </Menu>

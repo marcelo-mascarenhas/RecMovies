@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useEffect, useState } from "react";
+import useForm from "../hooks/useForm";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,7 +13,22 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import SearchIcon from '@mui/icons-material/Search';
+
+import { useNavigate } from "react-router-dom";
+
 import { Divider, IconButton, InputBase, Paper, TextField } from '@mui/material';
+
+import { popularMovies } from "../services/movies/popularMovies";
+
+async function getPopularMovies(farm_id) {
+  try {
+    const animals_response = await popularMovies(farm_id);
+    console.log(animals_response, "teste")
+
+  } catch (err) {
+    console.log("Error fetching movies");
+  }
+}
 
 function Copyright() {
   return (
@@ -29,6 +46,40 @@ function Copyright() {
 const cards = [1, 2, 3];
 
 export default function Home() {
+
+  const navigateTo = useNavigate()
+
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSelectChange,
+    handleSubmit,
+    handleSetErrors,
+  } = useForm();
+
+  useEffect(() => {
+    const x = getPopularMovies();
+  }, []);
+
+  async function checkValues(){
+    const error = {};
+    return error;
+  }
+
+  async function valuesAreCorrect(){
+    console.log("deu bom", values.searchMovie)
+    navigateTo('/movie')
+
+    try{
+      getMovieInfo(values.searchMovie)
+    }
+    catch(err){
+      console.log("fail api")
+    }
+
+  }
+
   return (
       <main>
         {/* Hero unit */}
@@ -54,14 +105,20 @@ export default function Home() {
             </Typography>
 
             <Paper
+              onSubmit={handleSubmit(checkValues, valuesAreCorrect)}
               component="form"
               align="center"
               sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "sm" }}
             >
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
+                // name = "searchMovie"
+                id = "searchMovie"
                 placeholder="Search"
                 inputProps={{ 'aria-label': 'search google maps' }}
+                value= {values.searchMovie}
+                onChange={handleChange}
+                // onChange={}
               />
               <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                 <SearchIcon />
