@@ -8,6 +8,10 @@ from .serializers import TodoSerializer
 from .models import Movies
 
 
+class Home(APIView):
+  def get(self, request):
+    return Response('Welcome to the ABALO.')
+
 
 class GetScores(APIView):
   authentication_classes = []
