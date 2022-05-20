@@ -71,11 +71,11 @@ export default function Home() {
   }
 
   async function valuesAreCorrect(){
-    console.log("mandando pro back:", values.searchMovie)
 
     try{
-      var movieInfos
-      movieInfos= await getMovieInfo(values.searchMovie)
+      var moviesInfos = await getMovieInfo(values.searchMovie)
+      navigateTo("/movies", {state:{moviesInfos}} )
+
     }
     catch(err){
       console.log("fail api")

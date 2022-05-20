@@ -1,9 +1,10 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import {useLocation} from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { Card, CardContent, CardMedia } from '@mui/material';
 
 const NUM_FILMES = 2
@@ -74,7 +75,15 @@ function Media(props) {
   );
 }
 
-export default function YouTube() {
+export default function Movies() {
+  
+  const location = useLocation();
+
+  if (location.state){
+    var moviesInfos = location.state
+    console.log(moviesInfos)
+  }
+
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Media loading={true} />

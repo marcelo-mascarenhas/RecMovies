@@ -1,8 +1,8 @@
 import * as React from "react";
 import Home from "./pages/home";
-import Sobre from "./pages/sobre";
 import Popular from "./pages/popular";
-import YouTube from "./pages/youtube";
+import Movies from "./pages/movies";
+import Invoice from "./pages/invoice";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Layout from "./Layout";
@@ -13,10 +13,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="sobre" element={<Sobre />} />
             <Route path="populares" element={<Popular/>} />
+            <Route path="movies" element={<Movies/>} />
+            {/* <Route path="movies/:invoiceId" element={<Invoice />} /> */}
 
-            <Route path="youtube" element={<YouTube />} />
 
             <Route path="*" element={<NoMatch />} />
           </Route>

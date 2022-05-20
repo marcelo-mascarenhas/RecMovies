@@ -39,8 +39,6 @@ function useForm() {
 
     setErrors(error);
 
-    console.log(Object.keys(error).length)
-
     if (Object.keys(error).length === 0) {
       valuesAreCorrect();
     }
