@@ -11,11 +11,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
+import { Link } from 'react-router-dom';
+import SLink from './slink';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const pages = ['populares', 'recentes', 'sobre'];
+
+const settings = ['Favoritos'];
+
+const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -39,14 +44,15 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
+          
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            LOGO
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, alignItems: 'center', }}
+            >
+            <MovieCreationIcon></MovieCreationIcon>
+            <SLink to="/">MovieRec</SLink>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -79,26 +85,32 @@ const ResponsiveAppBar = () => {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
+                  
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
           <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            LOGO
+            variant="h6" noWrap component="div"
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+            <MovieCreationIcon></MovieCreationIcon>
+            MovieRec
           </Typography>
+          
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
+                component={Link} 
+                to={'/' + page}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
+                {/* <Link to="/about">About</Link> */}
+                
               </Button>
             ))}
           </Box>
@@ -106,7 +118,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -137,7 +149,7 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Navbar;
     // <>
     //   <nav className="navbar">
     //     {/* <img src={search_icon} alt="Logo" onClick={() => history.push('/your-properties')}/> */}
