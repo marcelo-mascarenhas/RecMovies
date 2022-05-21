@@ -13,8 +13,14 @@ from .utils import getMovieDictionary
 
 class Home(APIView):
   def get(self, request):
-    return Response('Welcome to the ABALO.')
+    
+    forbidden_list = ['sex', 'porn', 'sexo', 'porno']
+    
+    for item in forbidden_list:
+      Movies.objects.filter(title__contains=item).delete()
+      Movies.objects.filter(overview__contains=item).delete()
 
+    return Response('Welcome to the ABALO.')
 
 
 class GetMostPopularMovies(APIView):
