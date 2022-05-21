@@ -25,15 +25,22 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
     ~~~
 
 2) Ative um novo ambiente virtual:
+
     ~~~
     pipenv shell
     ~~~
 
-3) Execute o comando:
+3) Execute o comando para baixar as dependências:
+
     ~~~
-    ./run.sh
+    pipenv install -r requirements.txt
     ~~~
 
+4) Execute o django:
+
+    ~~~
+    python manage.py runserver
+    ~~~
 ## Equipe
 
   Asafe Clemente Gadelha de Medeiros - 2019006434
