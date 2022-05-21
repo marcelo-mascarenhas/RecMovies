@@ -82,21 +82,21 @@ SPRINT 1
 - História: Como usuário do sistema, eu quero buscar filmes e acessar suas informações.
 - Tarefas:
     - Projetar e implementar a interface web \[ Asafe ]
-    - Criar rotas entre banco de dados e interface web \[ Matheus ]
+    - Criar rotas entre banco de dados e interface web \[ Matheus / Marcelo ]
 
 - História: Como usuário do sistema, eu quero receber recomendações de filmes similares ao filme buscado.
 - Tarefas: 
     - Implementar a interface web \[ Asafe ]
-    - Projetar e treinar o recomendador \[ Marcelo ]
-    - Salvar o modelo de recomendação \[ Marcelo ]
-    - Implementar o modelo no servidor \[ Marcelo ]
+    - Projetar e treinar o recomendador \[ Marcelo / Matheus]
+    - Salvar o modelo de recomendação \[ Marcelo / Matheus]
+    - Implementar o modelo no servidor \[ Marcelo / Matheus]
 
 - História: Como usuário do sistema, eu quero salvar um filme para visualização posterior.
 - Tarefas: 
     - Implementar a interface web \[ Asafe ]
-    - Criar sistema de armazenamento no cache do navegador \[ Matheus ]
+    - Criar sistema de armazenamento no cache do navegador \[ Matheus / Marcelo]
 
 - História: Como usuário do sistema, eu quero visualizar os filmes mais populares.
 - Tarefas: 
     - Implementar a interface web \[ Asafe ]
-    - Criar rotas entre banco de dados e interface web \[ Matheus ]
+    - Criar rotas entre banco de dados e interface web \[ Matheus / Marcelo]
