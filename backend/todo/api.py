@@ -31,10 +31,10 @@ class GetMostPopularMovies(APIView):
 class GetMovie(APIView):
   authentication_classes = []
   permission_classes = []
-  def get(self, request, movie_name):
+  def get(self, request, movie_name, limit):
     movies = {}
     movie_name = unidecode(movie_name)
-    o1 = Movies.objects.filter(title__contains=movie_name)
+    o1 = Movies.objects.filter(title__contains=movie_name)[:limit]
     
     final_response = getMovieDictionary(o1)
     
