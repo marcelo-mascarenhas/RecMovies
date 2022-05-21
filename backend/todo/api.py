@@ -10,16 +10,11 @@ from rest_framework import authentication, permissions
 import json
 from unidecode import unidecode
 from .utils import getMovieDictionary
+from .crawlers.remove import remove_adult
 
 class Home(APIView):
   def get(self, request):
-    
-    forbidden_list = ['sex', 'porn', 'sexo', 'porno']
-    
-    for item in forbidden_list:
-      Movies.objects.filter(title__contains=item).delete()
-      Movies.objects.filter(overview__contains=item).delete()
-
+    # remove_adult()
     return Response('Welcome to the ABALO.')
 
 
