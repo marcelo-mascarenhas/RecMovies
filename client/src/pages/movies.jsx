@@ -5,79 +5,76 @@ import {useLocation} from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Card, CardContent, CardMedia } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Paper } from '@mui/material';
+import noPoster from '../assets/noPoster.jpg'
 
-const NUM_FILMES = 2
+const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
-const data = [
-  {
-    src: 'https://source.unsplash.com/random',
-    title: 'Doutor Estranho no multiverso da loucura',
-    channel: '22 maio, 2022',
-    views: '396 k views',
-  },
-  {
-    src: 'https://source.unsplash.com/random',
-    title: 'Sonic 2 o filme',
-    channel: 'Calvin Harris',
-    views: '130 M views',
-  },
-];
 
 export default function Movies() {
   
   const location = useLocation();
-  const loading = false;
+  const [loadings, setLoadings] = React.useState({});
+  const loading = true
 
+  
   if (location.state){
     var movies = location.state.moviesInfos
+    console.log(movies)
   }
 
-  console.log(movies, "ue")
+  // console.log(Object.values(movies).map((filme, index) => (filme)))
 
   return (
     <Box sx={{ overflow: 'hidden' }}>
-      <Container sx={{ py: 8 }} maxWidth="md">
-        <Grid container spacing={2}>
-        {(loading ? Array.from(new Array(NUM_FILMES)) : data).map((filme, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-            <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            >
+      <Container sx={{ py: 3 }} maxWidth="md">
+      <Paper>
+        <Typography sx={{ py: 1, mb:3 }} align='center' variant="h6">
+          Search Results
+        </Typography>
+      </Paper>
+      
+        <Grid container spacing={2} justifyContent="center" alignItems="stretch">
+        {Object.values(movies).map((filme, index) => (
+            <Grid sx={{height:'100%'}} item key={index} xs={6} sm={4} md={3}>
+              <CardActionArea>
+                <Card
+                    sx={{height:'100%', display: 'flex', flexDirection: 'column' }}
+                >
+                {/* Image */}
+                {loading ? (
+                    <CardMedia
+                        component="img"
+                        sx={{
+                          // 16:9
+                          width: '100%',
+                        }}
+                        image={ filme.poster_path ? urlPostBase + filme.poster_path : noPoster}
+                        alt={filme.title}
+                      />
+                    ) : (
+                      <Skeleton variant="rectangular" height='100px' />
+                )}
 
-            {/* Image */}
-            {filme ? (
-                <CardMedia
-                    component="img"
-                    // sx={{
-                    //   // 16:9
-                    //   pt: '56.25%',
-                    // }}
-                    image={filme.src}
-                    alt={filme.title}
-                  />
-                ) : (
-                <Skeleton variant="rectangular" height={200} />
-            )}
+                {/* Descrição */}
+                {filme ? (
+                    <CardContent sx={{ flexGrow: 1, p: 2}}>
+                        <Typography noWrap gutterBottom variant="body2" sx={{ height: '20px'}}>
+                            {filme.title}
+                        </Typography>
+                        <Typography display="block" variant="caption" color="text.secondary">
+                            {filme.release_date}
+                        </Typography>
+                    </CardContent>
+                    ) : (
+                    <CardContent sx={{ flexGrow: 1, p: 2}}>
+                        <Skeleton />
+                        <Skeleton width="30%" />
+                    </CardContent>
+                )}
 
-            {/* Descrição */}
-            {filme ? (
-                <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="body2">
-                        {filme.title}
-                    </Typography>
-                    <Typography display="block" variant="caption" color="text.secondary">
-                        {filme.channel}
-                    </Typography>
-                </CardContent>
-                ) : (
-                <CardContent sx={{ flexGrow: 1 }}>
-                    <Skeleton />
-                    <Skeleton width="30%" />
-                </CardContent>
-            )}
-
-            </Card>
+                </Card>
+              </CardActionArea>
             </Grid>
         ))}
         </Grid>

@@ -1,103 +1,92 @@
 import * as React from 'react';
-import { useEffect, useState } from "react";
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { popularMovies } from "../services/movies/popularMovies";
-import { Card, CardContent, CardMedia } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Paper } from '@mui/material';
+import noPoster from '../assets/noPoster.jpg'
 
-const NUM_FILMES = 2
+const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
-const data = [
-  {
-    src: 'https://source.unsplash.com/random',
-    title: 'Doutor Estranho no multiverso da loucura',
-    channel: '22 maio, 2022',
-    views: '396 k views',
-  },
-  {
-    src: 'https://source.unsplash.com/random',
-    title: 'Sonic 2 o filme',
-    channel: 'Calvin Harris',
-    views: '130 M views',
-  },
-];
+export default function Popular() {
 
-function Media(props) {
-  const { loading } = props;
-  return (
-    <Container sx={{ py: 8 }} maxWidth="md">
-        <Grid container spacing={2}>
-        {(loading ? Array.from(new Array(NUM_FILMES)) : data).map((filme, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-            <Card
-                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            >
-
-            {/* Image */}
-            {filme ? (
-                <CardMedia
-                    component="img"
-                    // sx={{
-                    //   // 16:9
-                    //   pt: '56.25%',
-                    // }}
-                    image={filme.src}
-                    alt={filme.title}
-                  />
-                ) : (
-                <Skeleton variant="rectangular" height={200} />
-            )}
-
-            {/* Descrição */}
-            {filme ? (
-                <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="body2">
-                        {filme.title}
-                    </Typography>
-                    <Typography display="block" variant="caption" color="text.secondary">
-                        {filme.channel}
-                    </Typography>
-                </CardContent>
-                ) : (
-                <CardContent sx={{ flexGrow: 1 }}>
-                    <Skeleton />
-                    <Skeleton width="30%" />
-                </CardContent>
-            )}
-
-            </Card>
-            </Grid>
-        ))}
-        </Grid>
-    </Container>
-  );
-}
-
-export default function Populares() {
-
-
+  const [movies, setMovies] = React.useState({});
+  const loading = true
+  
   async function getPopularMovies(farm_id) {
     try {
-      const animals_response = await popularMovies(farm_id);
-      console.log(animals_response, "teste")
-  
+      const popularMoviesResponse = await popularMovies(farm_id);
+      return popularMoviesResponse
     } catch (err) {
       console.log("Error fetching movies");
     }
   }
 
-  useEffect(() => {
-    const x = getPopularMovies();
+  React.useEffect(() => {
+    getPopularMovies().then((data) => {
+      setMovies(data);
+      console.log(movies)
+    });
   }, []);
 
+  // console.log(Object.values(movies).map((filme, index) => (filme)))
+
   return (
-    <div></div>
-    // <Box sx={{ overflow: 'hidden' }}>
-    //   <Media loading={true} />
-    //   <Media />
-    // </Box>
+    <Box sx={{ overflow: 'hidden' }}>
+      <Container sx={{ py: 3 }} maxWidth="md">
+      <Paper>
+        <Typography sx={{ py: 1, mb:3 }} align='center' variant="h6">
+          Popular
+        </Typography>
+      </Paper>
+      
+        <Grid container spacing={2} justifyContent="center" alignItems="stretch">
+        { movies && Object.values(movies).map((filme, index) => (
+            <Grid sx={{height:'100%'}} item key={index} xs={6} sm={4} md={3}>
+              <CardActionArea>
+                <Card
+                    sx={{height:'100%', display: 'flex', flexDirection: 'column' }}
+                >
+                {/* Image */}
+                {filme ? (
+                    <CardMedia
+                        component="img"
+                        sx={{
+                          // 16:9
+                          width: '100%',
+                        }}
+                        image={ filme.poster_path ? urlPostBase + filme.poster_path : noPoster}
+                        alt={filme.title}
+                      />
+                    ) : (
+                      <Skeleton variant="rectangular" height='100px' />
+                )}
+
+                {/* Descrição */}
+                {filme ? (
+                    <CardContent sx={{ flexGrow: 1, p: 2}}>
+                        <Typography noWrap gutterBottom variant="body2" sx={{ height: '20px'}}>
+                            {filme.title}
+                        </Typography>
+                        <Typography display="block" variant="caption" color="text.secondary">
+                            {filme.release_date}
+                        </Typography>
+                    </CardContent>
+                    ) : (
+                    <CardContent sx={{ flexGrow: 1, p: 2}}>
+                        <Skeleton />
+                        <Skeleton width="30%" />
+                    </CardContent>
+                )}
+
+                </Card>
+              </CardActionArea>
+            </Grid>
+        ))}
+        </Grid>
+    </Container>
+    </Box>
   );
 }

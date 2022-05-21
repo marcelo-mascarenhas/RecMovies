@@ -15,7 +15,7 @@ import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Link } from 'react-router-dom';
 import SLink from './slink';
 
-const pages = ['populares'];
+const pages = ['popular'];
 
 const settings = ['Favoritos'];
 
