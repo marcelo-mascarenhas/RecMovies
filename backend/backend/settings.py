@@ -116,7 +116,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-PATH_TO_MODEL = os.path.join(BASE_DIR, 'todo', 'recommendation', 'twitter_texts_2016_RETWEETS.csv')
+PATH_TO_MODEL = os.path.join(BASE_DIR, 'todo', 'recommendation', 'topic_vec_3.csv')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

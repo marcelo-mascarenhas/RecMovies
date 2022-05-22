@@ -1,4 +1,5 @@
 from .recommendation_model import get_topic_matrix
+from django.db.models import Avg
 
 
 
