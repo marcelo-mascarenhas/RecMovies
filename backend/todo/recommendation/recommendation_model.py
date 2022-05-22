@@ -1,11 +1,6 @@
 import pandas as pd
 
-
-
-class Recommendation():
-    def __init__(path, )
-        topic_matrix = None
-
+topic_matrix = None
 
 def load_topic_matrix(path):
     global topic_matrix
@@ -18,3 +13,6 @@ def get_topic_matrix():
     else:
         return topic_matrix
 
+def get_recommendations(movie_id, limit):
+    topic_matrix = get_topic_matrix()
+    
