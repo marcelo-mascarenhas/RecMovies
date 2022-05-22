@@ -3,8 +3,6 @@ from django.shortcuts import render
 import operator
 from functools import reduce
 
-
-
 from .serializers import TodoSerializer
 from .models import Movies
 
@@ -16,12 +14,11 @@ import json
 from unidecode import unidecode
 from .utils import getMovieDictionary
 from .crawlers.remove import remove_adult
-
+from .recommendation.recommender import get_recommendations
 
 
 class Home(APIView):
   def get(self, request):
-    # remove_adult()
     return Response('Welcome to the ABALO.')
 
 
@@ -80,11 +77,10 @@ class GetRecommendation(APIView):
   authentication_classes = []
   permission_classes = []
 
-  def get(self, request, movie_name, limit):
-    movie_name = unidecode(movie_name)    
+  def get(self, request, movie_id, limit):
 
-    # recommendation_list = get_recommendations(movie_name, limit)
-    # o1 = Movies.objects.filter(reduce(operator.and_, (Movies(title__contains=movie_rec) for movie_rec in recommendation_list)))
+    recommendation_list = get_recommendations(movie_id, limit)
+    # o1 = Movies.objects.filter(reduce(operator.and_, (Movies(id=movie_rec) for movie_rec in recommendation_list)))
     # final_response = getMovieDictionary(o1)
     # return Response(final_response)
     
