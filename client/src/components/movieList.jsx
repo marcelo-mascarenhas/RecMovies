@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
 export default function MoviesList(props) {
-  console.log(props)
+
+  console.log(props.movies)
+  console.log(Object.values(props.movies).map((movie, index) => (console.log(movie))))
 
   const navigateTo = useNavigate()
   return (
