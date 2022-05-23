@@ -96,7 +96,7 @@ const Navbar = () => {
             variant="h6" noWrap component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
             <MovieCreationIcon></MovieCreationIcon>
-            MovieRec
+            <SLink to="/">MovieRec</SLink>
           </Typography>
           
           
