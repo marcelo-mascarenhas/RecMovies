@@ -1,6 +1,7 @@
 from .recommendation_model import get_parameters
 import numpy as np
 from ..models import Movies
+import collections
 
 def cossine(va, vb):
     #Cossine between normalized vector and crude item vector.
@@ -26,7 +27,8 @@ def calculate_score(similarity, item_vote_count, item_vote_mean, df_mean, min_vo
 
 def get_recommendations(movie_id, limit):
     matrix_topic, min_votes, db_mean  = get_parameters()
-    all_ids = Movies.objects.values_list('id', flat=True)
+    all_ids = list(Movies.objects.values_list('id', flat=True))
+    all_ids = np.asarray(all_ids)
     content_vec = matrix_topic[movie_id]
 
     final_dict = {}
@@ -41,8 +43,8 @@ def get_recommendations(movie_id, limit):
             similarity = cossine(content_vec, target_vec)
             final_score = calculate_score(similarity, 1, 1, db_mean, min_votes)
             final_dict[int(item)] = float(final_score)
-    
-    recom = sorted(final_dict.items(), key=lambda item: item[1], reverse=True)
-    final_recom = list(final_dict.keys())[:limit]
+
+    final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}
+    final_recom = list(final_dict.keys())[-limit:]
     print(final_recom)
     return final_recom
