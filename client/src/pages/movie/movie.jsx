@@ -21,6 +21,7 @@ export default function Movie() {
 
     var id = movie.id
     var y = JSON.parse(localStorage.getItem('movieRec-movies')) || {}
+    console.log(y)
     y[id] ? delete y[id] : y[id] = movie
 
     localStorage.setItem('movieRec-movies', JSON.stringify(y))

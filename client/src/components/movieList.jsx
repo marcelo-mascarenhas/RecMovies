@@ -32,7 +32,6 @@ export default function MoviesList(props) {
                 alt={movie.title}
             />
             {/* Descrição */}
-            {movie ? (
                 <CardContent sx={{ flexGrow: 1, p: 2}}>
                     <Typography noWrap gutterBottom variant="body2" sx={{ height: '20px'}}>
                         {movie.title}
@@ -41,12 +40,6 @@ export default function MoviesList(props) {
                         {movie.release_date}
                     </Typography>
                 </CardContent>
-                ) : (
-                <CardContent sx={{ flexGrow: 1, p: 2}}>
-                    <Skeleton />
-                    <Skeleton width="30%" />
-                </CardContent>
-            )}
             </Card>
           </CardActionArea>
         </Grid>
