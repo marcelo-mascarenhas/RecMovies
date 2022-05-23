@@ -49,18 +49,18 @@ export default function Movie() {
   };
 
   React.useEffect(() => {
-    var moviee = location.state.movie
-    setMovie(moviee)
-    setMovies({})
-
-  }, [location.state]);
-
-  React.useEffect(() => {
     var movie = location.state.movie
     var x = JSON.parse(localStorage.getItem('movieRec-movies'))
     setIsFavorite(x[movie.id])
     setMovie(movie)
+    setMovies({})
     console.log(movie)
+
+  }, [location.state]);
+
+
+
+  React.useEffect(() => {
 
     async function getMovies(){
       try{
@@ -76,7 +76,7 @@ export default function Movie() {
     }
     getMovies();
 
-  }, []);
+  }, [location.state]);
 
   return (
     <Box sx={{ overflow: 'hidden' }}>
