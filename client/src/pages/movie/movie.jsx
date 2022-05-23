@@ -27,22 +27,6 @@ export default function Movie() {
     localStorage.setItem('movieRec-movies', JSON.stringify(y))
   }
 
-
-  // React.useEffect(() => {
-  //   async function getMovies(){
-  //     try{
-  //       var movies = await getMovieRecommender(2)
-  //       console.log(movies)
-  //       console.log('pass')
-  //       setMovies(movies)
-  //     }
-  //     catch(err){
-  //       console.log("fail api")
-  //     }
-  //   }
-  //   getMovies();
-  // }, [movie]);
-
   const handleSetMovieIsFavorite = (movie) => {
     setIsFavorite(!isFavorite)
     setMovieFavorite(movie)
@@ -50,7 +34,7 @@ export default function Movie() {
 
   React.useEffect(() => {
     var movie = location.state.movie
-    var x = JSON.parse(localStorage.getItem('movieRec-movies'))
+    var x = JSON.parse(localStorage.getItem('movieRec-movies')) || {}
     setIsFavorite(x[movie.id])
     setMovie(movie)
     setMovies({})
