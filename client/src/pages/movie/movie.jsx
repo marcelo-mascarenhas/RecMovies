@@ -151,7 +151,7 @@ export default function Movie() {
           Recommendations 
         </Typography>
       </Paper>
-      <MoviesList movies={movies} small></MoviesList>
+      <MoviesList movies={movies.movies} small></MoviesList>
         
     </Container>
     </Box>
