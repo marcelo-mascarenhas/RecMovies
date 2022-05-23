@@ -20,7 +20,7 @@ export default function MoviesList(props) {
         <Grid sx={{height:'100%'}} item key={index} xs={props.small ? 5 : 6 } sm={props.small? 3: 4} md={ props.small ? 2: 3}>
           <CardActionArea>
             <Card key={index}
-                onClick={() => {console.log('teste'); navigateTo("/movieRec", {state:{movieRec}})} }
+                onClick={() => {console.log('teste'); navigateTo("/movie", {state:{movieRec}})} }
                 sx={{height:'100%', display: 'flex', flexDirection: 'column' }}
             >
             {/* Image */}
