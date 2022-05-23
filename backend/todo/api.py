@@ -80,9 +80,13 @@ class GetRecommendation(APIView):
   permission_classes = []
 
   def get(self, request, movie_id, limit):
+    try:
+      recommendation_list = get_recommendations(movie_id, limit)
+      o1 = Movies.objects.filter(id__in=recommendation_list)
+      final_response = getMovieDictionary(o1)
+    
+    except Exception as e:
+      final_response = {}
 
-    recommendation_list = get_recommendations(movie_id, limit)
-    o1 = Movies.objects.filter(id__in=recommendation_list)
-    final_response = getMovieDictionary(o1)
     return Response(final_response)
     
