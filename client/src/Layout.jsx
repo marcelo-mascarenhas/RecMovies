@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/navbar";
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Footer from "./components/footer";
+// import Footer from "./components/footer";
 
 const creme = '#E9E7D1'
 const azul = "#314E55"
@@ -26,7 +26,7 @@ const theme = createTheme({
           backgroundColor: '#121212'
         }
       }
-    }
+    },
   }
 });
 

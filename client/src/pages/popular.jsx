@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { popularMovies } from "../services/movies/popularMovies";
 import { Card, CardActionArea, CardContent, CardMedia, Paper } from '@mui/material';
 import noPoster from '../assets/noPoster.jpg'
+import MoviesList from '../components/movieList';
 
 const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
@@ -41,51 +42,7 @@ export default function Popular() {
           Popular
         </Typography>
       </Paper>
-      
-        <Grid container spacing={2} justifyContent="center" alignItems="stretch">
-        { movies && Object.values(movies).map((filme, index) => (
-            <Grid sx={{height:'100%'}} item key={index} xs={6} sm={4} md={3}>
-              <CardActionArea>
-                <Card
-                    sx={{height:'100%', display: 'flex', flexDirection: 'column' }}
-                >
-                {/* Image */}
-                {filme ? (
-                    <CardMedia
-                        component="img"
-                        sx={{
-                          // 16:9
-                          width: '100%',
-                        }}
-                        image={ filme.poster_path ? urlPostBase + filme.poster_path : noPoster}
-                        alt={filme.title}
-                      />
-                    ) : (
-                      <Skeleton variant="rectangular" height='100px' />
-                )}
-
-                {/* Descrição */}
-                {filme ? (
-                    <CardContent sx={{ flexGrow: 1, p: 2}}>
-                        <Typography noWrap gutterBottom variant="body2" sx={{ height: '20px'}}>
-                            {filme.title}
-                        </Typography>
-                        <Typography display="block" variant="caption" color="text.secondary">
-                            {filme.release_date}
-                        </Typography>
-                    </CardContent>
-                    ) : (
-                    <CardContent sx={{ flexGrow: 1, p: 2}}>
-                        <Skeleton />
-                        <Skeleton width="30%" />
-                    </CardContent>
-                )}
-
-                </Card>
-              </CardActionArea>
-            </Grid>
-        ))}
-        </Grid>
+      <MoviesList movies={movies}></MoviesList>
     </Container>
     </Box>
   );

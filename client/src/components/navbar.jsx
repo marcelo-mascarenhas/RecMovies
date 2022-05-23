@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 import SLink from './slink';
 
 const pages = ['popular'];
@@ -20,6 +22,7 @@ const pages = ['popular'];
 const settings = ['Favoritos'];
 
 const Navbar = () => {
+  const navigateTo = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -116,7 +119,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar>H</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -136,7 +139,7 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => {handleCloseUserMenu; navigateTo("/favorites")} }>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
