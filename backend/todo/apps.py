@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 from django.conf import settings
-from .recommendation.recommendation_model import load_topic_matrix
+from .recommendation.recommendation_model import load_topic_matrix, load_parameters
 
 
 class TodoConfig(AppConfig):
@@ -9,3 +9,5 @@ class TodoConfig(AppConfig):
     
     def ready(self):
         load_topic_matrix(settings.PATH_TO_MODEL)
+        load_parameters(settings.PATH_TO_ATT)
+        

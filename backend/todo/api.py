@@ -40,6 +40,7 @@ class GetMostPopularMovies(APIView):
     count_dict = {}
     o1 = Movies.objects.all().order_by('-popularity')[:number]
     #Movies.objects.filter(id=ID_DO_FILME)
+    #aggregateMovies.object.all()
     final_response = getMovieDictionary(o1, title_as_key=False)
     
     return Response(final_response)  
@@ -81,8 +82,7 @@ class GetRecommendation(APIView):
   def get(self, request, movie_id, limit):
 
     recommendation_list = get_recommendations(movie_id, limit)
-    # o1 = Movies.objects.filter(reduce(operator.and_, (Movies(id=movie_rec) for movie_rec in recommendation_list)))
-    # final_response = getMovieDictionary(o1)
-    # return Response(final_response)
+    o1 = Movies.objects.filter(id__in=recommendation_list)
+    final_response = getMovieDictionary(o1)
+    return Response(final_response)
     
-    return Response({'ab': 3})

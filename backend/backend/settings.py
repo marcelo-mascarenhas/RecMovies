@@ -116,7 +116,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-PATH_TO_MODEL = os.path.join(BASE_DIR, 'todo', 'recommendation', 'topic_vec_3.csv')
+PATH_TO_MODEL = os.path.join(BASE_DIR, 'todo', 'recommendation', 'params', 'topic_vec_3.csv')
+PATH_TO_ATT = os.path.join(BASE_DIR, 'todo', 'recommendation', 'params', 'min_mean.csv')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
