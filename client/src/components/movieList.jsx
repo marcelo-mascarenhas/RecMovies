@@ -10,17 +10,17 @@ const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
 export default function MoviesList(props) {
 
-  console.log('movielist', props.movies)
-  console.log(Object.values(props.movies).map((movie, index) => (console.log(movie))))
+  console.log('movielist',props.movies)
+  // console.log(Object.values(props.movies).map((movie, index) => (console.log(movie))))
 
   const navigateTo = useNavigate()
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="stretch">
-    {Object.keys(props.movies).length? (Object.values(props.movies).map((movieRec, index) => (
+    {Object.keys(props.movies).length? (Object.values(props.movies).map((movie, index) => (
         <Grid sx={{height:'100%'}} item key={index} xs={props.small ? 5 : 6 } sm={props.small? 3: 4} md={ props.small ? 2: 3}>
           <CardActionArea>
             <Card key={index}
-                onClick={() => {console.log('teste'); navigateTo("/movie", {state:{movieRec}})} }
+                onClick={() => {console.log('teste'); navigateTo("/movie", {state:{movie}})} }
                 sx={{height:'100%', display: 'flex', flexDirection: 'column' }}
             >
             {/* Image */}
@@ -30,16 +30,16 @@ export default function MoviesList(props) {
                   // 16:9
                   width: '100%',
                 }}
-                image={ movieRec.poster_path ? urlPostBase + movieRec.poster_path : noPoster}
-                alt={movieRec.title}
+                image={ movie.poster_path ? urlPostBase + movie.poster_path : noPoster}
+                alt={movie.title}
             />
             {/* Descrição */}
                 <CardContent sx={{ flexGrow: 1, p: 2}}>
                     <Typography noWrap gutterBottom variant="body2" sx={{ height: '20px'}}>
-                        {movieRec.title}
+                        {movie.title}
                     </Typography>
                     <Typography display="block" variant="caption" color="text.secondary">
-                        {movieRec.release_date}
+                        {movie.release_date}
                     </Typography>
                 </CardContent>
             </Card>

@@ -49,10 +49,18 @@ export default function Movie() {
   };
 
   React.useEffect(() => {
+    var moviee = location.state.movie
+    setMovie(moviee)
+    setMovies({})
+
+  }, [location.state]);
+
+  React.useEffect(() => {
     var movie = location.state.movie
     var x = JSON.parse(localStorage.getItem('movieRec-movies'))
     setIsFavorite(x[movie.id])
     setMovie(movie)
+    console.log(movie)
 
     async function getMovies(){
       try{
