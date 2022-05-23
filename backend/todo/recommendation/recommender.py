@@ -26,7 +26,7 @@ def calculate_score(similarity, item_vote_count, item_vote_mean, df_mean, min_vo
 
 
 def get_recommendations(movie_id, limit):
-    matrix_topic, min_votes, db_mean  = get_parameters()
+    matrix_topic, min_votes, db_mean, mtd  = get_parameters()
     all_ids = list(Movies.objects.values_list('id', flat=True))
     all_ids = np.asarray(all_ids)
     content_vec = matrix_topic[movie_id]
@@ -41,7 +41,7 @@ def get_recommendations(movie_id, limit):
             target_vec = matrix_topic[int(item)]
 
             similarity = cossine(content_vec, target_vec)
-            final_score = calculate_score(similarity, 1, 1, db_mean, min_votes)
+            final_score = calculate_score(np.array(similarity), np.array(mtd[item][1]),np.array(mtd[item][0]), np.array(db_mean), np.array(min_votes))
             final_dict[int(item)] = float(final_score)
 
     final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}

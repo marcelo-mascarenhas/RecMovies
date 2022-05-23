@@ -22,6 +22,7 @@ def dict_fromdf(df):
     return new_dict
 
 
+
 def load_topic_matrix(path):
     global topic_matrix
     df = pd.read_csv(path)
@@ -33,11 +34,21 @@ def load_parameters(path):
     min_votes = df['min_votes']
     db_mean = df['mean']
 
+
+def load_mins(path):
+    global mtd
+    df = pd.read_csv(path)
+
+    mtd = {}
+    for i in range(len(df)):
+        mtd[int(df['Unnamed: 0'].iloc[i])] = float(df['0'].iloc[i]), float(df['1'].iloc[i])
+    
+
 def get_parameters():
     if topic_matrix is None:
         raise Exception('Topic Matrix não foi carregada.')
     else:
-        return topic_matrix, min_votes, db_mean
+        return topic_matrix, min_votes, db_mean, mtd
 
 def get_recommendations(movie_id, limit):
     topic_matrix = get_topic_matrix()
