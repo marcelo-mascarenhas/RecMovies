@@ -54,14 +54,13 @@ export default function Movie() {
     setIsFavorite(x[movie.id])
     setMovie(movie)
     setMovies({})
-    console.log(movie)
 
   }, [location.state]);
 
 
 
   React.useEffect(() => {
-
+    var movie = location.state.movie
     async function getMovies(){
       try{
         console.log('aqui', movie.id)
