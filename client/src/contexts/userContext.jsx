@@ -13,7 +13,6 @@ export function UserContextProvider({ children }) {
   }
 
   useEffect(() => {
-    console.log('Fruit');
   }, [moviesFavorites])
 
   function setMovieFavorite(movie){

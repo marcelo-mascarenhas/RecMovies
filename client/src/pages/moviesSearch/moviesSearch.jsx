@@ -6,7 +6,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { getMovieInfo } from "../../services/movies/getMovie";
-import { Card, CardActionArea, CardContent, CardMedia, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import noPoster from '../../assets/noPoster.jpg'
 import SearchMovie from '../../components/searchMovie';
 import MoviesList from '../../components/movieList';

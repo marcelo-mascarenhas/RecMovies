@@ -9,10 +9,12 @@ import { useNavigate } from "react-router-dom";
 const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
 export default function MoviesList(props) {
+  console.log(props)
+
   const navigateTo = useNavigate()
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="stretch">
-    {props.movies && Object.values(props.movies).map((movie, index) => (
+    {Object.keys(props.movies).length? (Object.values(props.movies).map((movie, index) => (
         <Grid sx={{height:'100%'}} item key={index} xs={props.small ? 5 : 6 } sm={props.small? 3: 4} md={ props.small ? 2: 3}>
           <CardActionArea>
             <Card key={index}
@@ -48,7 +50,17 @@ export default function MoviesList(props) {
             </Card>
           </CardActionArea>
         </Grid>
-    ))}
+    )))
+    :
+    <>
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    <Skeleton sx={{width: '100%', my: 2, mx: 1}} variant="rectangular" width={168} height={315} />
+    </>
+      }
     </Grid>
   );
 }

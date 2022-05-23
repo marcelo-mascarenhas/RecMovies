@@ -2,8 +2,8 @@ import { Box, Container, Paper, Typography, ImageList, ImageListItem, IconButton
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import noPoster from '../../assets/noPoster.jpg'
-import { useUserContext } from '../../contexts/userContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { getMovieInfo, getMovieRecommender } from "../../services/movies/getMovie";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MoviesList from '../../components/movieList';
 
@@ -13,6 +13,7 @@ export default function Movie() {
 
   const location = useLocation();
   const [movie, setMovie] = React.useState({});
+  const [movies, setMovies] = React.useState({});
 
   const [isFavorite, setIsFavorite] = React.useState(false)
   
@@ -25,17 +26,47 @@ export default function Movie() {
     localStorage.setItem('movieRec-movies', JSON.stringify(y))
   }
 
+
+  // React.useEffect(() => {
+  //   async function getMovies(){
+  //     try{
+  //       var movies = await getMovieRecommender(2)
+  //       console.log(movies)
+  //       console.log('pass')
+  //       setMovies(movies)
+  //     }
+  //     catch(err){
+  //       console.log("fail api")
+  //     }
+  //   }
+  //   getMovies();
+  // }, [movie]);
+
   const handleSetMovieIsFavorite = (movie) => {
     setIsFavorite(!isFavorite)
     setMovieFavorite(movie)
   };
 
   React.useEffect(() => {
-
     var movie = location.state.movie
     var x = JSON.parse(localStorage.getItem('movieRec-movies'))
     setIsFavorite(x[movie.id])
     setMovie(movie)
+
+    async function getMovies(){
+      try{
+        console.log('aqui', movie.id)
+        var movies = await getMovieRecommender(movie.id)
+        console.log(movies)
+        console.log('pass')
+        setMovies(movies)
+      }
+      catch(err){
+        console.log("fail api")
+      }
+    }
+    getMovies();
+
   }, []);
 
   return (
@@ -62,7 +93,7 @@ export default function Movie() {
             <Box>
               <Grid 
                     // spacing={2}
-                    container
+                    // container
                     display='flex'
                     // direction="row"
                     justifyContent="space-between"
@@ -115,11 +146,11 @@ export default function Movie() {
         </Paper> }
 
         <Paper>
-        <Typography sx={{ py: 1, mb:3 }} align='center' variant="h6">
+        <Typography sx={{ py: 1, my:2 }} align='center' variant="h6">
           Recommendations 
         </Typography>
       </Paper>
-      <MoviesList movies={{movie}} small></MoviesList>
+      <MoviesList movies={movies} small></MoviesList>
         
     </Container>
     </Box>
