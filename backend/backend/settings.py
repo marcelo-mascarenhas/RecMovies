@@ -120,7 +120,6 @@ PATH_TO_MODEL = os.path.join(BASE_DIR, 'todo', 'recommendation', 'params', 'topi
 PATH_TO_ATT = os.path.join(BASE_DIR, 'todo', 'recommendation', 'params', 'min_mean.csv')
 PATH_TO_MINS = os.path.join(BASE_DIR, 'todo', 'recommendation', 'params', 'average_count.csv')
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 

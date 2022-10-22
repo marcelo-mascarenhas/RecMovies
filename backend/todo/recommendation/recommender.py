@@ -35,7 +35,6 @@ def get_recommendations(movie_id, limit):
     
     for item in all_ids:
         if(item != movie_id):
-            print(item)
             #tm = Movies.objects.get(id=item)
 
             target_vec = matrix_topic[int(item)]
