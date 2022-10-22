@@ -1,4 +1,4 @@
-django
+django>=4.0.8
 djangorestframework
 django-cors-headers
 unidecode

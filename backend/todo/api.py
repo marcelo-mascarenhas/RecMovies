@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-import operator
 from functools import reduce
 
 from .serializers import TodoSerializer
@@ -10,7 +9,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 
-import json
 from unidecode import unidecode
 from .utils import getMovieDictionary
 from .crawlers.remove import remove_adult
@@ -39,10 +37,8 @@ class GetMostPopularMovies(APIView):
     """
     count_dict = {}
     o1 = Movies.objects.all().order_by('-popularity')[:number]
-    #Movies.objects.filter(id=ID_DO_FILME)
-    #aggregateMovies.object.all()
     final_response = getMovieDictionary(o1, title_as_key=False)
-    
+    print(final_response)
     return Response(final_response)  
 
 class GetMovie(APIView):
@@ -65,12 +61,10 @@ class GetMovie(APIView):
     
     """
     
-    
     movie_name = unidecode(movie_name)
     o1 = Movies.objects.filter(title__contains=movie_name)[:limit]
-    
     final_response = getMovieDictionary(o1)
-    
+
     return Response(final_response)  
 
 
