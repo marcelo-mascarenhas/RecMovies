@@ -1,9 +1,4 @@
-
-from unicodedata import name
-from requests import Response, patch, request
 from todo.models import Movies
-from django.db.models import QuerySet
-from todo.utils import getMovieDictionary
 from mock_django.query import QuerySetMock
 from todo.api import GetMovie, GetMostPopularMovies
 import json
@@ -57,11 +52,8 @@ def test_first_item_in_database(insert_movies):
 def test_popular_movies(insert_movies):
 
   get_popular_movies = GetMostPopularMovies()
-  
-  
   response = get_popular_movies.get(request="", number=2)
   data = response.data['data']
-  
   all_keys = [data[0]['title'], data[1]['title']]
   
   assert all_keys == ['Chihiro', 'Inception']
