@@ -12,8 +12,7 @@ def test_creation_of_movie():
     genres='Action',
   )
   
-  assert str(movie.title) == "Piratas do Caribe"
-  assert str(movie.language) == 'pt'
+  assert str(movie.title) == "Piratas do Caribe"; assert str(movie.language) == 'pt'
   assert str(movie.genres) == 'Action'
   
 

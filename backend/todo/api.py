@@ -38,7 +38,6 @@ class GetMostPopularMovies(APIView):
     count_dict = {}
     o1 = Movies.objects.all().order_by('-popularity')[:number]
     final_response = getMovieDictionary(o1, title_as_key=False)
-    print(final_response)
     return Response(final_response)  
 
 class GetMovie(APIView):
