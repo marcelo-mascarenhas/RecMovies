@@ -1,4 +1,4 @@
-from .recommendation_model import get_parameters
+from .recommendation_model import RecommenderAttributes
 import numpy as np
 from ..models import Movies
 import collections
@@ -16,8 +16,8 @@ def calculate_wr(mtd, item, df_mean, min_votes):
     
     """
 
-    item_vote_count = np.array(mtd[item][1])
-    item_vote_mean = np.array(mtd[item][0])
+    item_vote_count = mtd[item][1]
+    item_vote_mean = mtd[item][0]
     item_minsum_count = item_vote_count + min_votes
     
     #(WR)=(v/(v+m))R+(m/(v+m))C  
@@ -35,7 +35,8 @@ def calculate_finalscore(similarity, wr):
 
 
 def get_recommendations(movie_id, limit):
-    matrix_topic, min_votes, db_mean, mtd  = get_parameters()
+    brincadeiruda = RecommenderAttributes()
+    matrix_topic, min_votes, db_mean, mtd  = brincadeiruda.get_parameters()
     all_ids = list(Movies.objects.values_list('id', flat=True))
     all_ids = np.asarray(all_ids)
     content_vec = matrix_topic[movie_id]
@@ -49,7 +50,7 @@ def get_recommendations(movie_id, limit):
             target_vec = matrix_topic[int(item)]
             similarity = cossine(content_vec, target_vec)
 
-            wr = calculate_wr(mtd, item, np.array(db_mean), np.array(min_votes))
+            wr = calculate_wr(mtd, item, db_mean, min_votes)
             final_score = calculate_finalscore(np.array(similarity), wr)
             
             final_dict[int(item)] = float(final_score)

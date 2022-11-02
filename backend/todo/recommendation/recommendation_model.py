@@ -1,83 +1,87 @@
 import pandas as pd
 import numpy as np
+import threading
 
-# class RecommenderAttributes():
-#     def __init__(self):
-#         self.topic_matrix = None
-        
-#         self.min_votes = 0
-        
-#         self.db_mean = 0
-        
-#         self.mtd = None
-    
-#     def __new__(cls):
-#         if not hasattr(cls, 'instance'):
-#             cls.instance = super(RecommenderAttributes, cls).__new__(cls)
-        
-#         return cls.instance    
-    
-    
-#     def set_parameters(self):
-        
-    
-    
-#     def get_parameters(self):
-#         return np.array(self.topic_matrix), np.array(self.min_votes), np.array(self.db_mean), mtd
-    
+class ThreadSafeSingleton(type):
+    _instances = {}
+    _singleton_lock = threading.Lock()
 
-def dict_fromdf(df):
-    dicted_convert = {}
-    first_iteration = True
-    for key, value in df.iteritems():
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            with cls._singleton_lock:
+                if cls not in cls._instances:
+                    cls._instances[cls] = super(ThreadSafeSingleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+
+class RecommenderAttributes(metaclass=ThreadSafeSingleton):
+    
+    def __init__(self, *args, **kwargs):
         
-        if not first_iteration:
-            value_list = []
+        if len(args) != 1:
+            raise Exception('Path_list não passada para a inicialização da classe.')
+        
+        path_list = args[0];
+        
+        self.topic_matrix = None
+        
+        self.min_votes = 0; self.db_mean = 0; self.mtd = None;
+        
+        self.load_all_parameters(path_list)
+    
+    def __load_matrix(self, matrix_path):
+        df = pd.read_csv(matrix_path)
+        self.topic_matrix = self.__dict_fromdf(df)
+        
+        
+    def __load_parameters(self, parameter_path):
+        df = pd.read_csv(parameter_path)
+        self.min_votes = np.array(df['min_votes'])
+        self.db_mean = np.array(df['mean'])
+    
+    def __load_mins(self, min_path):
+        df = pd.read_csv(min_path)
+
+        self.mtd = {}
+        
+        for i in range(len(df)):
             
-            for x in value:
-                value_list.append(x)    
+            current_item = int(df['Unnamed: 0'].iloc[i]);
             
-            dicted_convert[int(key)] = np.array(value_list)
+            first_position = np.array(df['0'].iloc[i]); second_position = np.array(df['1'].iloc[i]);
+            
+            self.mtd[current_item] = (first_position, second_position)
+            
+    def load_all_parameters(self, path_list):
+        """
+            path_list: tuple of paths containing the paths of all recommender parameters, such that the
+            first element has the path to the matrix, the second to the parameters and the third to the mins
         
-        first_iteration = False
+        """
+        mat_path, par_path, min_path = path_list
+        self.__load_matrix(mat_path); self.__load_parameters(par_path);
+        self.__load_mins(min_path);
     
-    return dicted_convert
-
-topic_matrix = None
-min_votes = 0
-db_mean = 0
-mtd = None
-
-
-
-
-def load_topic_matrix(path):
-    global topic_matrix
-    df = pd.read_csv(path)
-    topic_matrix = dict_fromdf(df)
-
-def load_parameters(path):
-    global min_votes, db_mean
-    df = pd.read_csv(path)
-    min_votes = df['min_votes']
-    db_mean = df['mean']
-
-
-def load_mins(path):
-    global mtd
-    df = pd.read_csv(path)
-
-    mtd = {}
-    for i in range(len(df)):
-        mtd[int(df['Unnamed: 0'].iloc[i])] = float(df['0'].iloc[i]), float(df['1'].iloc[i])
     
-
-def get_parameters():
-    if topic_matrix is None:
-        raise Exception('Topic Matrix não foi carregada.')
-    else:
-        return topic_matrix, min_votes, db_mean, mtd
-
-def get_recommendations(movie_id, limit):
-    topic_matrix = get_topic_matrix()
     
+    def get_parameters(self):
+        return self.topic_matrix, self.min_votes, self.db_mean, self.mtd
+    
+    
+    def __dict_fromdf(self, df):
+        dicted_convert = {}
+        first_iteration = True
+        
+        for key, value in df.iteritems():
+            
+            if not first_iteration:
+                value_list = []
+                
+                for x in value:
+                    value_list.append(x)    
+                
+                dicted_convert[int(key)] = np.array(value_list)
+            
+            first_iteration = False
+        
+        return dicted_convert
