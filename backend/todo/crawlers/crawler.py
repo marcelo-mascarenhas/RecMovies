@@ -15,24 +15,27 @@ class Crawler:
         string_final += d['name'] + ","
     return string_final.rstrip(',')
 
+  def create_content(self, index, response):
+    content = {"pk": index, "model": 
+      "todo.movies","fields": {
+          "title": response['title'],
+          "language": response['original_language'], 
+          "genres": self.convert_string(response['genres']), 
+          "overview": response['overview'],
+          "popularity": response['popularity'], 
+          "poster_path": response['poster_path'], 
+          "release_date": None if response['release_date'] == "" else response['release_date'],
+          "vote_average": response['vote_average'],
+          "vote_count":response['vote_count']}
+    }
+    return content
+
   def format_data(self):
     content = {}
     for i in range(self.minDataRead,self.maxDataRead):
       try:
         response = tmdb.Movies(i).info()
-        content = {"pk": i, "model": 
-          "todo.movies","fields": {
-              "title": response['title'],
-              "language": response['original_language'], 
-              "genres": self.convert_string(response['genres']), 
-              "overview": response['overview'],
-              "popularity": response['popularity'], 
-              "poster_path": response['poster_path'], 
-              "release_date": None if response['release_date'] == "" else response['release_date'],
-              "vote_average": response['vote_average'],
-              "vote_count":response['vote_count']}
-        }
-        self.movies.append(content)
+        self.movies.append(self.create_content(i,response))
       except:
         continue
     
