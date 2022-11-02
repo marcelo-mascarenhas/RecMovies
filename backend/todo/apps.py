@@ -8,7 +8,6 @@ class TodoConfig(AppConfig):
     name = 'todo'
     
     def ready(self):
-        # load_topic_matrix(settings.PATH_TO_MODEL)
-        # load_parameters(settings.PATH_TO_ATT)
-        # load_mins(settings.PATH_TO_MINS)
-        pass
+        load_topic_matrix(settings.PATH_TO_MODEL)
+        load_parameters(settings.PATH_TO_ATT)
+        load_mins(settings.PATH_TO_MINS)

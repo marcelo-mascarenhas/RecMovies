@@ -1,25 +1,53 @@
 import pandas as pd
 import numpy as np
 
+# class RecommenderAttributes():
+#     def __init__(self):
+#         self.topic_matrix = None
+        
+#         self.min_votes = 0
+        
+#         self.db_mean = 0
+        
+#         self.mtd = None
+    
+#     def __new__(cls):
+#         if not hasattr(cls, 'instance'):
+#             cls.instance = super(RecommenderAttributes, cls).__new__(cls)
+        
+#         return cls.instance    
+    
+    
+#     def set_parameters(self):
+        
+    
+    
+#     def get_parameters(self):
+#         return np.array(self.topic_matrix), np.array(self.min_votes), np.array(self.db_mean), mtd
+    
+
+def dict_fromdf(df):
+    dicted_convert = {}
+    first_iteration = True
+    for key, value in df.iteritems():
+        
+        if not first_iteration:
+            value_list = []
+            
+            for x in value:
+                value_list.append(x)    
+            
+            dicted_convert[int(key)] = np.array(value_list)
+        
+        first_iteration = False
+    
+    return dicted_convert
+
 topic_matrix = None
 min_votes = 0
 db_mean = 0
 mtd = None
 
-def dict_fromdf(df):
-    new_dict = {}
-    i = 0
-    for key, value in df.iteritems():
-         if i == 0:
-            i+=1
-            continue
-            
-         l=[]
-         for x in value:
-             l.append(x)
-         new_dict[int(key)] = np.array(l)
-    
-    return new_dict
 
 
 
