@@ -1,9 +1,9 @@
-# TP-Eng-Soft1
+# TP-Eng-Soft2
 
 ## Rodar projeto
 ~~~
-git clone https://github.com/marcelo-mascarenhas/TP-Eng-Soft1.git
-cd TP-Eng-Soft1/
+git clone https://github.com/marcelo-mascarenhas/TP-Eng-Soft2.git
+cd TP-Eng-Soft2/
 ~~~
 Para rodar aplicação abra os diretórios do front (client) e do back (backend) em terminais separados.
 
