@@ -4,6 +4,17 @@ import numpy as np
 from ..models import Movies
 import collections
 
+def get_otherparams(matrix_topic, movie_id):
+    all_ids = list(Movies.objects.values_list('id', flat=True))
+    all_ids = np.asarray(all_ids)
+
+    content_vec = matrix_topic[movie_id]
+
+    final_dict = {}
+
+    return all_ids, content_vec, final_dict
+
+
 def cossine(va, vb):
     #Cossine between normalized vector and crude item vector.
     cossine = np.dot(va,vb)/(np.linalg.norm(va)*np.linalg.norm(vb))
@@ -27,36 +38,38 @@ def calculate_wr(mtd, item, df_mean, min_votes):
     return wr
 
 
-def calculate_finalscore(similarity, wr):
+def calculate_finalscore(similarity, wr, final_dict):
 
     final_score = 0.99*similarity + 0.01*wr 
     
-    return final_score
+    final_dict[int(item)] = float(final_score)
 
+
+def get_finalrecom(final_dict, limit):
+    final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}
+
+    final_recom = list(final_dict.keys())[-limit:]
+
+    return final_recom
 
 
 def get_recommendations(movie_id, limit):
     attributes = RecommenderAttributes()
-    matrix_topic, min_votes, db_mean, mtd  = attributes.get_parameters()
-    all_ids = list(Movies.objects.values_list('id', flat=True))
-    all_ids = np.asarray(all_ids)
-    content_vec = matrix_topic[movie_id]
 
-    final_dict = {}
+    matrix_topic, min_votes, db_mean, mtd  = attributes.get_parameters()
+
+    all_ids, content_vec, final_dict = get_otherparams(matrix_topic, movie_id)
     
     for item in all_ids:
         if(item != movie_id):
-            #tm = Movies.objects.get(id=item)
 
             target_vec = matrix_topic[int(item)]
             similarity = cossine(content_vec, target_vec)
 
             wr = calculate_wr(mtd, item, db_mean, min_votes)
-            final_score = calculate_finalscore(np.array(similarity), wr)
             
-            final_dict[int(item)] = float(final_score)
+            calculate_finalscore(np.array(similarity), wr, final_dict)
 
-    final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}
-    final_recom = list(final_dict.keys())[-limit:]
-    print(final_recom)
+    final_recom = get_finalrecom(final_dict, limit)
+    
     return final_recom
