@@ -1,3 +1,4 @@
+from attr import attributes
 from .recommendation_model import RecommenderAttributes
 import numpy as np
 from ..models import Movies
@@ -35,8 +36,8 @@ def calculate_finalscore(similarity, wr):
 
 
 def get_recommendations(movie_id, limit):
-    brincadeiruda = RecommenderAttributes()
-    matrix_topic, min_votes, db_mean, mtd  = brincadeiruda.get_parameters()
+    attributes = RecommenderAttributes()
+    matrix_topic, min_votes, db_mean, mtd  = attributes.get_parameters()
     all_ids = list(Movies.objects.values_list('id', flat=True))
     all_ids = np.asarray(all_ids)
     content_vec = matrix_topic[movie_id]
