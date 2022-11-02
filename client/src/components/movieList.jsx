@@ -6,7 +6,7 @@ import { Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
 import noPoster from '../assets/noPoster.jpg'
 import { useNavigate } from "react-router-dom";
 
-const urlPostBase = 'https://image.tmdb.org/t/p/original'
+const BASE_URL_POSTER = 'https://image.tmdb.org/t/p/original'
 
 function NoMoviesToShow() {
   let rows = [];
@@ -22,7 +22,7 @@ function MovieImage({ movie }) {
     sx={{
       width: '100%',
     }}
-    image={movie.poster_path ? urlPostBase + movie.poster_path : noPoster}
+    image={movie.poster_path ? BASE_URL_POSTER + movie.poster_path : noPoster}
     alt={movie.title}
   />)
 }
