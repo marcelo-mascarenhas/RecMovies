@@ -106,7 +106,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 
 
 - Tarefas Técnicas
-    - Rodar a ferramenta Lizard para receber o relatório dos produtos \[ Asafe, Helio, Marcelo, Matheus ]
+    - Rodar a ferramenta Lizard para obter o relatório do sistema \[ Asafe, Helio, Marcelo, Matheus ]
     - Refatorar funções mais complexas do sistema \[ Asafe, Helio, Marcelo, Matheus ]
     
 ### SPRINT 3
