@@ -12,10 +12,31 @@ def test_creation_of_movie():
     genres='Action',
   )
   
-  assert str(movie.title) == "Piratas do Caribe"; assert str(movie.language) == 'pt'
-  assert str(movie.genres) == 'Action'
+  assert str(movie.title) == "Piratas do Caribe"; 
+  assert str(movie.language) == 'pt';
+  assert str(movie.genres) == 'Action';
   
 
+# Mock example.
+def test_get_movies(mocker):
+  
+  mock_first_movies = mocker.patch("todo.models.Movies.objects.filter")
+  mock_first_movies.return_value =  [(Movies(
+                                      title="Chihiro",
+                                      language='jp',
+                                      genres='Anime',
+                                    ))]
+
+  get_movie_obj = GetMovie()
+ 
+  response = get_movie_obj.get(request="", movie_name="Chihiro", limit=1)
+
+  data = response.data
+  
+  assert 'Chihiro' in data['data']
+  
+  
+  
 @pytest.fixture
 def insert_movies():
   
@@ -57,24 +78,10 @@ def test_popular_movies(insert_movies):
   
   assert all_keys == ['Chihiro', 'Inception']
   
-
-# Mock example.
-def test_get_movies(mocker):
-  mock_first_movies = mocker.patch("todo.models.Movies.objects.filter")
+def trial_test():
+  a = 2+2
+  assert(a) == 4
   
-  mock_first_movies.return_value =  [(Movies(
-                                      title="Chihiro",
-                                      language='jp',
-                                      genres='Anime',
-                                    ))]
-
-  get_movie_obj = GetMovie()
- 
-  response = get_movie_obj.get(request="", movie_name="Chihiro", limit=1)
-
-  data = response.data
-  
-  assert 'Chihiro' in data['data']
 
 
 
