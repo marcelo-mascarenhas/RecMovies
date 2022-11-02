@@ -72,7 +72,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 
 ## Backlog do Produto e do Sprint
 
-SPRINT 1
+### SPRINT 1
 
 - Tarefas Técnicas
     - Preparar ambiente de desenvolvimento ( VSCode, Dependências ) \[ Asafe, Helio, Marcelo, Matheus ]
@@ -100,3 +100,15 @@ SPRINT 1
 - Tarefas: 
     - Implementar a interface web \[ Asafe ]
     - Criar rotas entre banco de dados e interface web \[ Matheus / Marcelo]
+    
+    
+### SPRINT 2
+
+
+- Tarefas Técnicas
+    - Rodar a ferramenta Lizard para receber o relatório dos produtos \[ Asafe, Helio, Marcelo, Matheus ]
+    - Refatorar funções mais complexas do sistema \[ Asafe, Helio, Marcelo, Matheus ]
+    
+### SPRINT 3
+
+   A Fazer
