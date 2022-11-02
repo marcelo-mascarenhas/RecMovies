@@ -10,19 +10,27 @@ def cossine(va, vb):
     return cossine
 
 
-def calculate_score(similarity, item_vote_count, item_vote_mean, df_mean, min_votes):
+def calculate_wr(mtd, df_mean, min_votes):
     """
     Calculate the final score.
     
     """
+
+    item_vote_count = np.array(mtd[item][1])
+    item_vote_mean = np.array(mtd[item][0])
+    item_minsum_count = item_vote_count + min_votes
     
     #(WR)=(v/(v+m))R+(m/(v+m))C      
-    wr = ((item_vote_count/(item_vote_count+min_votes))\
-      *item_vote_mean+(min_votes/(item_vote_count+min_votes)))*df_mean
+    wr = ( (item_vote_count / (item_minsum_count) ) * item_vote_mean + (min_votes / (item_minsum_count) ) ) * df_mean
+
+    return wr
+
+
+def calculate_finalscore(similarity, wr):
 
     final_score = 0.99*similarity + 0.01*wr 
+    
     return final_score
-
 
 
 def get_recommendations(movie_id, limit):
@@ -38,9 +46,11 @@ def get_recommendations(movie_id, limit):
             #tm = Movies.objects.get(id=item)
 
             target_vec = matrix_topic[int(item)]
-
             similarity = cossine(content_vec, target_vec)
-            final_score = calculate_score(np.array(similarity), np.array(mtd[item][1]),np.array(mtd[item][0]), np.array(db_mean), np.array(min_votes))
+
+            wr = calculate_wr(np.array(similarity), mtd, np.array(db_mean), np.array(min_votes))
+            final_score = calculate_finalscore(np.array(similarity), wr)
+
             final_dict[int(item)] = float(final_score)
 
     final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}
