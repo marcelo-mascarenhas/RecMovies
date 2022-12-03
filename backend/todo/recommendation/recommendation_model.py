@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import threading
 
-class ThreadSafeSingleton(type):
+class ThreadSafeSingleton(type):    
     _instances = {}
     _singleton_lock = threading.Lock()
 
@@ -72,7 +72,7 @@ class RecommenderAttributes(metaclass=ThreadSafeSingleton):
         dicted_convert = {}
         first_iteration = True
         
-        for key, value in df.iteritems():
+        for key, value in df.items():
             
             if not first_iteration:
                 value_list = []
