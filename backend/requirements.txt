@@ -3,3 +3,5 @@ djangorestframework
 django-cors-headers
 unidecode
 pandas
+pytest-django
+mock-django

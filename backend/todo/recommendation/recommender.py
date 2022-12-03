@@ -3,6 +3,7 @@ import numpy as np
 from ..models import Movies
 import collections
 
+
 def get_otherparams(matrix_topic, movie_id):
     all_ids = list(Movies.objects.values_list('id', flat=True))
     all_ids = np.asarray(all_ids)
