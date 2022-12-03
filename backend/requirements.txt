@@ -5,3 +5,4 @@ unidecode
 pandas
 pytest-django
 mock-django
+requests
