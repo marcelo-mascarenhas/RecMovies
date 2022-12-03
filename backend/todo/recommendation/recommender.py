@@ -1,4 +1,3 @@
-from attr import attributes
 from .recommendation_model import RecommenderAttributes
 import numpy as np
 from ..models import Movies
