@@ -15,8 +15,6 @@ from nltk.corpus import stopwords
 import spacy
 
 
-# In[2]:
-
 
 class TextProcessor():
   """

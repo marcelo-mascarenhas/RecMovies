@@ -27,23 +27,26 @@ def calculate_wr(mtd, item, df_mean, min_votes):
     Calculate the final score.
     
     """
-
+    
     item_vote_count = mtd[item][1]
     item_vote_mean = mtd[item][0]
     item_minsum_count = item_vote_count + min_votes
-    
-    #(WR)=(v/(v+m))R+(m/(v+m))C  
-    wr = ( (item_vote_count / (item_minsum_count) ) * item_vote_mean + (min_votes / (item_minsum_count) ) ) * df_mean
+
+    try:
+        wr = ( (item_vote_count / (item_minsum_count) ) * item_vote_mean + (min_votes / (item_minsum_count) ) ) * df_mean
+    except ZeroDivisionError as e:
+        raise ZeroDivisionError('Function is trying to divide by zero. Failing;')
+
 
     return wr
 
 
 def calculate_finalscore(similarity, wr, item, final_dict):
-
-    final_score = 0.99*similarity + 0.01*wr 
     
+    final_score = 0.99*similarity + 0.01*wr if 0 <= similarity <= 1 \
+        or 0 <= wr <= 1 else 0      
+   
     final_dict[int(item)] = float(final_score)
-
 
 def get_finalrecom(final_dict, limit):
     final_dict = {k: v for k, v in sorted(final_dict.items(), key=lambda x: x[1])}

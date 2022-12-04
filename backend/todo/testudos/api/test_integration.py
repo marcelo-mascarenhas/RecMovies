@@ -15,7 +15,6 @@ def test_creation_of_movie():
   assert str(movie.title) == "Piratas do Caribe"; 
   assert str(movie.language) == 'pt';
   assert str(movie.genres) == 'Action';
-  
 
 # Mock example.
 def test_get_movies(mocker):
@@ -56,18 +55,28 @@ def insert_movies():
     
   )
   movie2.save()
-  
+
+
 
 @pytest.mark.django_db
 def test_size_database(insert_movies):
   all_objects = Movies.objects.all()
   assert len(all_objects) == 2
 
+
 @pytest.mark.django_db
 def test_first_item_in_database(insert_movies):
   first_obj = Movies.objects.first()
   assert str(first_obj.title) == "Inception"
 
+
+@pytest.mark.django_db
+def test_remove_movie_from_the_database_manually(insert_movies):
+  first_obj = Movies.objects.first(); first_obj.delete()
+  second_obj = Movies.objects.first()
+  assert str(second_obj.title) == "Chihiro"
+  
+  
 @pytest.mark.django_db
 def test_popular_movies(insert_movies):
 
@@ -77,12 +86,3 @@ def test_popular_movies(insert_movies):
   all_keys = [data[0]['title'], data[1]['title']]
   
   assert all_keys == ['Chihiro', 'Inception']
-  
-def trial_test():
-  a = 2+2
-  assert(a) == 4
-  
-
-
-
-  

@@ -11,6 +11,8 @@ class Crawler:
 
   def convert_string(self,dic):
     string_final = ""
+    if len(dic) == 0:
+      raise Exception("Empty dictionary")
     for d in dic:
         string_final += d['name'] + ","
     return string_final.rstrip(',')
