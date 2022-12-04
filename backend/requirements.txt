@@ -7,3 +7,4 @@ pytest-django
 mock-django
 pytest-mock
 requests
+tmdbsimple
