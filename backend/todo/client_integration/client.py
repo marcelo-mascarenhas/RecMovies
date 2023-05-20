@@ -3,32 +3,88 @@ from ..models import Client
 from ..models import MovieClient
 
 class ClientManipulator():
-    def __init__(self):
-        # self.__charge_movie_value()
-        pass
-    
-    def __charge_movie_value(self, client_object, movie_object):
-        #Cobra o valor do filme comprado
-        movie_price = movie_object.price
+
+    def change_user_password(self, client_id, new_password):
         
-        if client_object.money < movie_price:
-                return False
-            
-        client_object.money = client_object.money - movie_price
+        result_query_client = Client.objects.filter(id=client_id)
+        if not result_query_client:
+            return -1
+        
+        client_object = result_query_client[0]
 
-        self.save_object_in_database(client_object)
-        return True
+        if client_object.password and new_password == client_object.password:
+            return "A nova senha deve ser diferente da senha antiga"
+        
+        if len(new_password) < 8:
+            return "A nova senha deve conter mais de 8 caracteres"
+        
+        if not self.__check_for_number_in_string(new_password):
+            return "A nova senha deve conter numeros"
+
+        if not self.__check_letters_in_string(new_password):
+            return "A nova senha deve conter letras"
+        
+        if not self.__detect_special_character_in_string(new_password):
+            return "A nova senha deve conter caracteres especiais"
+
+        client_object.password = new_password;  self.save_object_in_database(client_object)
+        return "Senha salva com sucesso"
+
+
+
+    def add_money(self, client_id, money_to_add):
+        #Adiciona dinheiro a carteira do cliente
+        result_query_client = Client.objects.filter(id=client_id)
+
+        # if money_to_add not a number
+        if not isinstance(money_to_add, int) and not isinstance(money_to_add, float):
+                return -1
+        
+        if money_to_add <= 0:
+            return -1
+        
+        if not result_query_client:
+            return -1
+        else:
+            client_object = result_query_client[0]
+
+            client_object.money = client_object.money + money_to_add
+            self.save_object_in_database(client_object)
+        
+        return client_object.money
     
-    def __check_movie_available(self, movie_object):
-        return movie_object.available_copies > 0
+    def adjust_new_address(self, client_id, new_adress):
 
-    def save_object_in_database(self, object_to_save):
-        object_to_save.save(); return 0;
+        result_query_client = Client.objects.filter(id=client_id)
 
-    def __remove_item_from_stock(self, movie_object):
-        movie_object.available_copies = movie_object.available_copies - 1
-        self.save_object_in_database(movie_object)
-        return movie_object.available_copies
+        if not isinstance(new_adress, str):
+            return -1
+
+        if not result_query_client:
+            return -1
+        else:
+            client_object = result_query_client[0]
+
+            client_object.address_line = new_adress
+            self.save_object_in_database(client_object)
+        
+        return 0
+    
+    def establish_telephone(self, client_id, telephone):
+        result_query_client = Client.objects.filter(id=client_id)
+
+        if not isinstance(telephone, str) and not isinstance(telephone, int): 
+            return -1
+
+        if not result_query_client:
+            return -1
+        else:
+            client_object = result_query_client[0]
+
+            client_object.telephone = telephone
+            self.save_object_in_database(client_object)
+        
+        return 0
 
     def buy_movie(self, client_id, movie_id):
         # Checa se o filme tá disponível para compra, se o cliente tem dinheiro
@@ -50,8 +106,7 @@ class ClientManipulator():
             movie_object = result_query_movie[0]
             # Use the movie_object here
             movie_available = self.__check_movie_available(movie_object)
-        
-            
+   
             
         if not result_query_client:
             return -4
@@ -71,44 +126,64 @@ class ClientManipulator():
     
     def create_movie_client_interaction(self, client_id, movie_id):
         movie_client_interaction = MovieClient(client_id=client_id, movie_id=movie_id)
+        # movie_client_interaction = self.create_movie_client_object(client_id, movie_id)
         self.save_object_in_database(movie_client_interaction)
-        return 0
+        return movie_client_interaction
 
-    def add_money(self, client_id, money_to_add):
-        #Adiciona dinheiro a carteira do cliente
-        result_query_client = Client.objects.filter(id=client_id)
-
-        # if money_to_add not a number
-        if not isinstance(money_to_add, int):
-            if not isinstance(money_to_add, float):
-                return -1
-        
+    def authenticate_user_with_password(self, client_id, password, email):
+        result_query_client = Client.objects.filter(email=email)
         if not result_query_client:
             return -1
-        else:
-            client_object = result_query_client[0]
-
-            client_object.money = client_object.money + money_to_add
-            self.save_object_in_database(client_object)
         
-        return client_object.money
+        client_object = result_query_client[0]
+        return False if client_object.password != password else True        
+
+    def __charge_movie_value(self, client_object, movie_object):
+        #Cobra o valor do filme comprado
+        movie_price = movie_object.price
+        
+        if client_object.money < movie_price:
+                return False
+            
+        client_object.money = client_object.money - movie_price
+
+        self.save_object_in_database(client_object)
+        return True
     
-    def set_new_address(self, client_id, new_adress):
+    def __check_movie_available(self, movie_object):
+        return movie_object.available_copies > 0
 
-        result_query_client = Client.objects.filter(id=client_id)
+    def create_movie_client_object(self, client_id, movie_id):
+        return MovieClient(client_id=client_id, movie_id=movie_id)
 
-        if not isinstance(new_adress, str):
-            return -1
 
-        if not result_query_client:
-            return -1
-        else:
-            client_object = result_query_client[0]
 
-            client_object.address_line = new_adress
-            self.save_object_in_database(client_object)
+    def save_object_in_database(self, object_to_save):
+        object_to_save.save(); return 0;
+
+    def __remove_item_from_stock(self, movie_object):
+        movie_object.available_copies = movie_object.available_copies - 1
+        self.save_object_in_database(movie_object)
+        return movie_object.available_copies
+
+    def __check_for_number_in_string(self, string):
+        return any(character.isdigit() for character in string)
+
+    def __check_letters_in_string(self, string):
+        return any(character.isalpha() for character in string)
+
+
+
+
+    def __detect_special_character_in_string(self, string):
+        character_list = ['@', '_', '!', '#', '$', 
+        '%', '^', '&', '*', '(', ')', '<', '>', '?', '/', '\\', '|', '}', '{', 
+        '~', ':', ']', '[']
         
-        return 0
+        dictionary_for_faster_query = {k: None for k in character_list}
+        
+        return any(character in dictionary_for_faster_query for character in string)
+
 
 if __name__ == '__main__':
     Client()
