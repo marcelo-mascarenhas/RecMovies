@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderFooter 1`] = `
+[
+  <style
+    dangerouslySetInnerHTML={
+      {
+        "__html": ".css-16ybtzv{background-color:#fff;padding:48px;}",
+      }
+    }
+    data-emotion="css 16ybtzv"
+  />,
+  <footer
+    className="MuiBox-root css-16ybtzv"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-tcrtuv-MuiTypography-root{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:500;font-size:1.25rem;line-height:1.6;letter-spacing:0.0075em;text-align:center;margin-bottom:0.35em;}",
+        }
+      }
+      data-emotion="css tcrtuv-MuiTypography-root"
+    />
+    <h6
+      className="MuiTypography-root MuiTypography-h6 MuiTypography-alignCenter MuiTypography-gutterBottom css-tcrtuv-MuiTypography-root"
+    >
+      Footer
+    </h6>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1xatcrf-MuiTypography-root{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:1rem;line-height:1.75;letter-spacing:0.00938em;text-align:center;color:rgba(0, 0, 0, 0.6);}",
+        }
+      }
+      data-emotion="css 1xatcrf-MuiTypography-root"
+    />
+    <p
+      className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-alignCenter css-1xatcrf-MuiTypography-root"
+    >
+      Something here to give the footer a purpose!
+    </p>
+    <style
+      dangerouslySetInnerHTML={
+        {
+          "__html": ".css-1vl95ex-MuiTypography-root{margin:0;font-family:"Roboto","Helvetica","Arial",sans-serif;font-weight:400;font-size:0.875rem;line-height:1.43;letter-spacing:0.01071em;text-align:center;color:rgba(0, 0, 0, 0.6);}",
+        }
+      }
+      data-emotion="css 1vl95ex-MuiTypography-root"
+    />
+    <p
+      className="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter css-1vl95ex-MuiTypography-root"
+    >
+      Copyright © 
+      2023
+      .
+    </p>
+  </footer>,
+]
+`;
