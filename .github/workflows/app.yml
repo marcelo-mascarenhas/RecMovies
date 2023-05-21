@@ -2,9 +2,9 @@ name: App CI
 
 on:
   push:
-    branches: [ "trial_branch" ]
+    branches: [ "main", "trial_branch" ]
   pull_request:
-    branches: [ "trial_branch" ]
+    branches: [ "main", "trial_branch" ]
 
 jobs:
   job-back:
