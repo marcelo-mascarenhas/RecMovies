@@ -48,7 +48,6 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
 
     ~~~
     pytest -m 'unit'
-    
     ~~~
 
  2) Para executar os testes de unidade, entre na pasta 'client' e execute o seguinte comando:
