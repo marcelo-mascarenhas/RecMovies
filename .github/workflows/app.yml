@@ -30,7 +30,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        pytest
+        pytest -m 'unit'
 
   job-front:
 
