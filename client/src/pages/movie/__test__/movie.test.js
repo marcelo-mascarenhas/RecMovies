@@ -1,10 +1,4 @@
-function setMovieFavorite(favorites, movie){
-
-    if (movie)
-    // Caso esteja no objeto coloca deleta, caso não esteja adiciona
-        favorites[movie.id] ? delete favorites[movie.id] : favorites[movie.id] = movie
-    return favorites
-} 
+import {setMovieFavorite} from '../movie';
 
 describe('setMovieFavorite', () => {
   let favorites;

@@ -9,14 +9,14 @@ import MoviesList from '../../components/movieList';
 
 const urlPostBase = 'https://image.tmdb.org/t/p/original'
 
-export function setMovieFavorite(favorites, movie){
+export const setMovieFavorite = (favorites, movie) => {
   // Caso esteja no objeto coloca deleta, caso não esteja adiciona
   if (movie)
     favorites[movie.id] ? delete favorites[movie.id] : favorites[movie.id] = movie
   return favorites
 } 
 
-export default function Movie() {
+export const Movie = () => {
 
   const location = useLocation();
   const [movie, setMovie] = React.useState({});
@@ -24,7 +24,7 @@ export default function Movie() {
 
   const [isFavorite, setIsFavorite] = React.useState(false)
   
-  function setMovieFavoriteInLocalStorage(movie){
+  const setMovieFavoriteInLocalStorage = (movie) => {
 
     var favorites = localStorage.getItem('movieRec-movies')
     var favorites_object = JSON.parse(favorites) || {}
@@ -49,10 +49,10 @@ export default function Movie() {
 
 
   React.useEffect(() => {
-    var movie = location.state.movie
-    async function getMovies(){
+    let movie = location.state.movie
+    const getMovies = async () => {
       try{
-        var movies = await getMovieRecommender(movie.id)
+        let movies = await getMovieRecommender(movie.id)
         setMovies(movies)
       }
       catch(err){
