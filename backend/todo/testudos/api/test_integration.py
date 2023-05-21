@@ -1,3 +1,9 @@
+import django
+import os
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+
+django.setup()
 from todo.models import Movies
 from mock_django.query import QuerySetMock
 from todo.api import GetMovie, GetMostPopularMovies
@@ -33,7 +39,6 @@ def test_get_movies(mocker):
   data = response.data
   
   assert 'Chihiro' in data['data']
-  
   
   
 @pytest.fixture

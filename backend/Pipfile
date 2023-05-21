@@ -6,10 +6,16 @@ name = "pypi"
 [packages]
 djangorestframework = "*"
 django-cors-headers = "*"
-Django = "*"
+Django = ">=4.0.8"
 Unidecode = "*"
+pandas = "*"
+pytest-django = "*"
+mock-django = "*"
+pytest-mock = "*"
+requests = "*"
+tmdbsimple = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+

@@ -41,15 +41,33 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
     ~~~
     python manage.py runserver
     ~~~
+    
+### Testes
+
+ 1) Para executar os testes de unidade do backend, entre na pasta 'backend' e execute o seguinte comando: 
+
+    ~~~
+    pytest -m 'unit'
+    ~~~
+
+ 2) Para executar os testes de unidade, entre na pasta 'client' e execute o seguinte comando:
+    
+    ~~~
+    npm test
+    ~~~
+
 ## Equipe
 
   Asafe Clemente Gadelha de Medeiros - 2019006434
   
   Helio Victor Flexa dos Santos - 2019006680
   
-  Matheus Prado Miranda - 2019007023
-  
+  Henrique Magalhães de Oliveira Carvalho - 2019006698
+   
   Marcelo Mascarenhas Ribeiro de Araújo - 2019110053
+
+  Matheus Prado Miranda - 2019007023
+
   
 **Objetivo do Sistema:** Plataforma de recomendação que implementa uma interface de avaliação, recomendação e visualização, no domínio de filmes.
 
@@ -111,4 +129,7 @@ Para rodar aplicação abra os diretórios do front (client) e do back (backend)
     
 ### SPRINT 3
 
-   A Fazer
+- Tarefas Técnicas
+    - Desenvolver testes de unidade para o back-end \[Henrique, Marcelo, Matheus ]
+    - Desenvolver testes de unidade para o front-end \[ Asafe, Helio ]   
+
