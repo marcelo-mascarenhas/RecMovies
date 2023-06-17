@@ -33,7 +33,7 @@ jobs:
         coverage run -m pytest
     - name: Get Coverage Report
       run: |
-        coverage json --omit=/usr/* ./backend
+        coverage json --omit=/usr/* ./backend/coverage.json
     - name: Upload coverage reports to Codecov
       uses: 
         codecov/codecov-action@v3
