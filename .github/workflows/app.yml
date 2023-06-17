@@ -39,6 +39,7 @@ jobs:
         codecov/codecov-action@v3
       env: 
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        base_dir: ./backend
 
 
 
