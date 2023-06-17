@@ -8,3 +8,4 @@ mock-django
 pytest-mock
 requests
 tmdbsimple
+coverage
