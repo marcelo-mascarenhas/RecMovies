@@ -59,8 +59,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
         run: npm install
-      - name: Run Tests
-        run: npm test
       - name: Generate Report
         run: npm test -- --coverage 
       - name: Upload coverage reports to Codecov
