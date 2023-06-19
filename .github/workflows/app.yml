@@ -31,9 +31,14 @@ jobs:
     - name: Run Tests on coverage
       run: |
         coverage run -m pytest
+    - name: Get Coverage Report
+      run: |
+        coverage json --omit=/usr/* 
     - name: Upload coverage reports to Codecov
       uses: 
         codecov/codecov-action@v3
+      env: 
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 
   # job-front:
