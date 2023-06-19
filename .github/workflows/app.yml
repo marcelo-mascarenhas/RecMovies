@@ -34,7 +34,7 @@ jobs:
     - name: Get Coverage Report
       run: |
         coverage json --omit=/usr/* 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: backend-coverage
         path: backend/coverage.json
@@ -62,7 +62,7 @@ jobs:
       - name: Generate Report
         run: npm test -- --coverage 
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: frontend-coverage
           path: client/coverage/coverage-final.json
@@ -77,6 +77,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
       - name: Upload to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
