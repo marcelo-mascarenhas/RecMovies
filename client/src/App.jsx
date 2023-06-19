@@ -4,7 +4,7 @@ import * as React from "react";
 import NoMatch from "./pages/nomatch";
 import Home from "./pages/home";
 import Popular from "./pages/popular";
-import Movie from "./pages/movie/movie";
+import {Movie} from "./pages/movie/movie";
 import Favorites from "./pages/favorite";
 import { Routes, Route } from "react-router-dom";
 import Movies from "./pages/moviesSearch/moviesSearch";
