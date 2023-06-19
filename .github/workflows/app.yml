@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      # max-parallel: 4
+      max-parallel: 4
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         python-version: ["3.10"]
@@ -34,17 +34,17 @@ jobs:
     - name: Get Coverage Report
       run: |
         coverage json --omit=/usr/* 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: backend-coverage
-          path: coverage.json
+    - uses: actions/upload-artifact@v2
+      with:
+        name: backend-coverage
+        path: coverage.json
 
 
   frontend-tests:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      # max-parallel: 4
+      max-parallel: 4
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         node-version: [18.x]
