@@ -7,11 +7,11 @@ on:
     branches: [ "main", "trial_branch" ]
 
 jobs:
-  job-back:
+  backend-tests:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 4
+      # max-parallel: 4
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         python-version: ["3.10"]
@@ -34,18 +34,17 @@ jobs:
     - name: Get Coverage Report
       run: |
         coverage json --omit=/usr/* 
-    - name: Upload coverage reports to Codecov
-      uses: 
-        codecov/codecov-action@v3
-      env: 
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: backend-coverage
+          path: coverage.json
 
 
-  job-front:
+  frontend-tests:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 4
+      # max-parallel: 4
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         node-version: [18.x]
@@ -62,8 +61,22 @@ jobs:
         run: npm install
       - name: Generate Report
         run: npm test -- --coverage 
-      - name: Upload coverage reports to Codecov
-        uses: 
-          codecov/codecov-action@v3
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: frontend-coverage
+          path: coverage/coverage-final.json
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+
+  upload-to-codecov:
+    needs: [frontend-tests, backend-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v1
