@@ -37,7 +37,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: backend-coverage
-        path: coverage.json
+        path: backend/coverage.json
 
 
   frontend-tests:
@@ -65,7 +65,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: frontend-coverage
-          path: coverage/coverage-final.json
+          path: client/coverage/coverage-final.json
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
